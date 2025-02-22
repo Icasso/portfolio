@@ -25,7 +25,7 @@ export function Education() {
         </CardHeader>
         <CardContent className="pt-0">
           <ul className="list-disc list-inside space-y-2.5 text-sm text-muted-foreground">
-            <li>Dean's List</li>
+            <li>Dean&apos;s List</li>
             <li>
               Grade A Final Year Thesis Project: Reddit Sentiment Index: Stock
               Price Movement Prediction with Valence Aware Dictionary Sentiment
