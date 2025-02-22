@@ -1,3 +1,5 @@
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import {
   Tooltip,
   TooltipContent,
@@ -5,106 +7,72 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Separator } from "@/components/ui/separator";
-import { Card, CardContent } from "@/components/ui/card";
 
-const programmingLanguages = [
+const skillCategories = [
   {
-    name: "Java",
-    details: "Backend development, Spring Framework, Enterprise applications",
+    category: "Programming",
+    items: [
+      {
+        name: "Java",
+        details:
+          "Backend development, Spring Framework, Enterprise applications",
+      },
+      { name: "Python", details: "Data processing, APIs, Automation scripts" },
+      { name: "C#", details: ".NET Core, ASP.NET, Desktop applications" },
+      {
+        name: ".NET",
+        details: "Web APIs, Microservices, Enterprise solutions",
+      },
+      {
+        name: "HTML",
+        details: "Semantic markup, Responsive design, Web accessibility",
+      },
+      { name: "CSS", details: "Modern layouts, Flexbox, Grid, Animations" },
+      { name: "JavaScript", details: "Frontend development, React, Node.js" },
+    ],
   },
   {
-    name: "Python",
-    details: "Data processing, APIs, Automation scripts",
+    category: "Languages",
+    items: [
+      { name: "English", details: "Native proficiency" },
+      { name: "Cantonese", details: "Native proficiency" },
+      { name: "Chinese", details: "Native proficiency" },
+    ],
   },
   {
-    name: "C#",
-    details: ".NET Core, ASP.NET, Desktop applications",
-  },
-  {
-    name: ".NET",
-    details: "Web APIs, Microservices, Enterprise solutions",
-  },
-  {
-    name: "HTML",
-    details: "Semantic markup, Responsive design, Web accessibility",
-  },
-  {
-    name: "CSS",
-    details: "Modern layouts, Flexbox, Grid, Animations",
-  },
-  {
-    name: "JavaScript",
-    details: "Frontend development, React, Node.js",
-  },
-];
-
-const technologiesByCategory = [
-  {
-    category: "Database",
+    category: "Technologies",
     items: [
       { name: "MySQL", details: "Relational database management" },
       { name: "Redis", details: "In-memory data store" },
       { name: "Oracle SQL", details: "Enterprise database management" },
-    ],
-  },
-  {
-    category: "Message Queue",
-    items: [
       { name: "Apache Kafka", details: "Distributed streaming platform" },
+      { name: "Spring Boot", details: "Java framework" },
+      { name: "Django", details: "Python web framework" },
+      { name: "Docker", details: "Containerization" },
+      { name: "Kubernetes", details: "Container orchestration" },
     ],
   },
   {
-    category: "CI/CD",
+    category: "Tools & Platforms",
     items: [
       { name: "Git", details: "Version control" },
       { name: "GitLab", details: "DevOps platform" },
       { name: "JIRA", details: "Project management" },
       { name: "Heroku", details: "Cloud platform" },
-      { name: "Kubernetes", details: "Container orchestration" },
-      { name: "K6", details: "Load testing" },
-      { name: "JUnit 5", details: "Testing framework" },
-      { name: "Mockito", details: "Mocking framework" },
-    ],
-  },
-  {
-    category: "Cloud",
-    items: [
       { name: "AliCloud", details: "Cloud computing platform" },
-      { name: "Microsoft Azure", details: "Cloud services" },
-    ],
-  },
-  {
-    category: "Framework",
-    items: [
-      { name: "Spring Boot", details: "Java framework" },
-      { name: "log4j2", details: "Logging framework" },
-      { name: "Django", details: "Python web framework" },
-    ],
-  },
-  {
-    category: "Configuration Management",
-    items: [{ name: "Apollo", details: "Distributed configuration center" }],
-  },
-  {
-    category: "Monitoring",
-    items: [{ name: "Grafana", details: "Metrics visualization" }],
-  },
-  {
-    category: "Dependency Management",
-    items: [{ name: "Maven", details: "Build automation tool" }],
-  },
-  {
-    category: "Service Discovery",
-    items: [{ name: "Nacos", details: "Service registry and configuration" }],
-  },
-  {
-    category: "Tools",
-    items: [
-      { name: "macOS (unix)", details: "Operating system" },
+      { name: "Azure", details: "Cloud services" },
       { name: "VS Code", details: "Code editor" },
       { name: "IntelliJ IDEA", details: "Java IDE" },
-      { name: "PyCharm", details: "Python IDE" },
-      { name: "DataGrip", details: "Database tool" },
+    ],
+  },
+  {
+    category: "Infrastructure",
+    items: [
+      { name: "Apollo", details: "Distributed configuration center" },
+      { name: "Grafana", details: "Metrics visualization" },
+      { name: "Maven", details: "Build automation tool" },
+      { name: "Nacos", details: "Service registry and configuration" },
+      { name: "log4j2", details: "Logging framework" },
     ],
   },
 ];
@@ -112,49 +80,35 @@ const technologiesByCategory = [
 export function Skills() {
   return (
     <Card>
-      <CardContent className="pt-6">
-        <div className="grid gap-6">
-          <div>
-            <h3 className="font-semibold mb-4">Programming Languages</h3>
-            <TooltipProvider>
-              <div className="flex flex-wrap gap-2">
-                {programmingLanguages.map((lang) => (
-                  <Tooltip key={lang.name}>
-                    <TooltipTrigger asChild>
-                      <div className="bg-primary text-primary-foreground rounded-md px-2 py-1 text-sm cursor-help">
-                        {lang.name}
-                      </div>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>{lang.details}</p>
-                    </TooltipContent>
-                  </Tooltip>
-                ))}
-              </div>
-            </TooltipProvider>
-          </div>
-
-          <Separator />
-
-          {technologiesByCategory.map((category) => (
+      <CardContent>
+        <div className="space-y-6">
+          {skillCategories.map((category, index) => (
             <div key={category.category}>
-              <h3 className="font-semibold mb-4">{category.category}</h3>
-              <TooltipProvider>
-                <div className="flex flex-wrap gap-2">
-                  {category.items.map((tech) => (
-                    <Tooltip key={tech.name}>
-                      <TooltipTrigger asChild>
-                        <div className="bg-secondary text-secondary-foreground rounded-md px-2 py-1 text-sm cursor-help">
-                          {tech.name}
-                        </div>
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>{tech.details}</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  ))}
-                </div>
-              </TooltipProvider>
+              {index > 0 && <Separator className="mb-6" />}
+              <div>
+                <h3 className="font-semibold text-primary mb-3">
+                  {category.category}
+                </h3>
+                <TooltipProvider>
+                  <div className="flex flex-wrap gap-2">
+                    {category.items.map((skill) => (
+                      <Tooltip key={skill.name}>
+                        <TooltipTrigger asChild>
+                          <Badge
+                            variant="secondary"
+                            className="cursor-help hover:bg-secondary/80"
+                          >
+                            {skill.name}
+                          </Badge>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>{skill.details}</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    ))}
+                  </div>
+                </TooltipProvider>
+              </div>
             </div>
           ))}
         </div>

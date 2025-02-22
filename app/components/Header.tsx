@@ -8,7 +8,7 @@ export function Header() {
       <h1 className="text-4xl font-bold tracking-tight mb-4">
         Tsui Hoi Ming, Isaac
       </h1>
-      <h2 className="text-xl text-muted-foreground mb-4">Software Engineer</h2>
+      <h2 className="text-xl text-muted-foreground mb-4">Software Engineer, Hong Kong</h2>
       <p className="text-muted-foreground max-w-2xl mb-6">
         Software engineer specializing in high-performance backend
         architectures. 3+ years experience building distributed scalable
