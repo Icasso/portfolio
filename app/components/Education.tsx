@@ -6,10 +6,7 @@ const education = [
     organization: "City University of Hong Kong",
     role: "Faculty of Science and Engineering",
     period: "Sep 2018 - Jun 2022",
-    highlights: [
-      "Dean's List",
-      "Grade A Final Year Thesis Project: Reddit Sentiment Index: Stock Price Movement Prediction with Valence Aware Dictionary Sentiment Reasoner",
-    ],
+    highlights: ["Dean's List"],
   },
   {
     title: "Hong Kong Diploma of Secondary Education",

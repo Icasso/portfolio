@@ -1,8 +1,13 @@
-import { Github, Linkedin, Mail, Clock } from "lucide-react";
+import { Clock } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
+import {
+  GitHubLogoIcon,
+  LinkedInLogoIcon,
+  EnvelopeClosedIcon,
+} from "@radix-ui/react-icons";
 
 export function Header() {
   const [time, setTime] = useState<string>("");
@@ -62,7 +67,7 @@ export function Header() {
             href="https://github.com/Icasso"
             className="flex items-center gap-2"
           >
-            <Github className="w-4 h-4" />
+            <GitHubLogoIcon className="w-4 h-4" />
             GitHub
           </Link>
         </Button>
@@ -71,7 +76,7 @@ export function Header() {
             href="https://www.linkedin.com/in/tsuihoiming/"
             className="flex items-center gap-2"
           >
-            <Linkedin className="w-4 h-4" />
+            <LinkedInLogoIcon className="w-4 h-4" />
             LinkedIn
           </Link>
         </Button>
@@ -80,7 +85,7 @@ export function Header() {
             href="mailto:isaactsui2000@gmail.com"
             className="flex items-center gap-2"
           >
-            <Mail className="w-4 h-4" />
+            <EnvelopeClosedIcon className="w-4 h-4" />
             Email
           </Link>
         </Button>

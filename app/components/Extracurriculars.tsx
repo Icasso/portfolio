@@ -12,19 +12,6 @@ import { useRef } from "react";
 
 const activities = [
   {
-    title: "Reddit Sentiment Index: Stock Price Movement Prediction",
-    organization: "City University of Hong Kong",
-    role: "Final Year Project",
-    period: "2022",
-    description:
-      "Developed a sentiment analysis system using VADER (Valence Aware Dictionary Sentiment Reasoner) to predict stock price movements based on Reddit discussions.",
-    highlights: [
-      "Implemented VADER sentiment analysis on Reddit data",
-      "Built predictive models for stock price movements",
-      "Analyzed correlation between social sentiment and market behavior",
-    ],
-  },
-  {
     title: "Software Engineering Virtual Experience",
     organization: "JPMorgan Chase & Co.",
     role: "Virtual Program Participant",
