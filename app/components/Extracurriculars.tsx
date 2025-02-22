@@ -1,11 +1,29 @@
 import { Card, CardContent } from "@/components/ui/card";
+import { toast } from "sonner";
 import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card";
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
+import { useRef } from "react";
 
 const activities = [
+  {
+    title: "Reddit Sentiment Index: Stock Price Movement Prediction",
+    organization: "City University of Hong Kong",
+    role: "Final Year Project",
+    period: "2022",
+    description:
+      "Developed a sentiment analysis system using VADER (Valence Aware Dictionary Sentiment Reasoner) to predict stock price movements based on Reddit discussions.",
+    highlights: [
+      "Implemented VADER sentiment analysis on Reddit data",
+      "Built predictive models for stock price movements",
+      "Analyzed correlation between social sentiment and market behavior",
+    ],
+  },
   {
     title: "Software Engineering Virtual Experience",
     organization: "JPMorgan Chase & Co.",
@@ -99,43 +117,82 @@ const activities = [
 ];
 
 export function Extracurriculars() {
+  const plugin = useRef(Autoplay({ delay: 2500, stopOnInteraction: true }));
+
   return (
-    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {activities.map((activity) => (
-        <HoverCard key={activity.title}>
-          <HoverCardTrigger asChild>
-            <Card className="overflow-hidden cursor-pointer transition-colors hover:bg-muted">
-              <CardContent className="p-0">
-                <div className="relative">
-                  <div className="absolute top-0 right-0 bg-primary text-primary-foreground px-3 py-1 rounded-bl text-sm font-medium">
-                    {activity.period}
-                  </div>
-                  <div className="p-6 pt-12">
-                    <h3 className="font-semibold text-lg mb-2 text-primary">
-                      {activity.title}
-                    </h3>
-                    <p className="text-sm font-medium text-muted-foreground">
-                      {activity.role} • {activity.organization}
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </HoverCardTrigger>
-          <HoverCardContent className="w-80">
-            <div className="space-y-2">
-              <p className="text-sm text-muted-foreground">
-                {activity.description}
-              </p>
-              <ul className="text-sm text-muted-foreground list-disc list-inside space-y-1">
-                {activity.highlights.map((highlight, i) => (
-                  <li key={i}>{highlight}</li>
-                ))}
-              </ul>
-            </div>
-          </HoverCardContent>
-        </HoverCard>
-      ))}
+    <div className="w-full max-w-5xl mx-auto px-4">
+      <Carousel
+        plugins={[plugin.current]}
+        className="w-full"
+        opts={{
+          align: "start",
+          loop: true,
+        }}
+      >
+        <CarouselContent className="-ml-2 md:-ml-4">
+          {activities.map((activity) => (
+            <CarouselItem
+              key={activity.title}
+              className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 min-h-[200px]"
+            >
+              <div className="h-full">
+                <Card
+                  className="overflow-hidden cursor-pointer transition-colors hover:bg-muted h-[180px] border"
+                  role="listitem"
+                  onClick={() => {
+                    toast(activity.title, {
+                      description: (
+                        <div className="space-y-2">
+                          <p className="text-sm text-muted-foreground">
+                            {activity.description}
+                          </p>
+                          <div className="space-y-1">
+                            <h4 className="text-sm font-medium">Highlights:</h4>
+                            <ul
+                              className="text-sm text-muted-foreground list-disc list-inside space-y-1"
+                              role="list"
+                            >
+                              {activity.highlights.map((highlight, i) => (
+                                <li key={i} role="listitem">
+                                  {highlight}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
+                      ),
+                      duration: 5000,
+                    });
+                  }}
+                >
+                  <CardContent className="p-0 h-full">
+                    <div className="relative h-full">
+                      <time
+                        className="absolute top-0 right-0 bg-primary text-primary-foreground px-3 py-1 rounded-bl text-sm font-medium"
+                        dateTime={activity.period}
+                      >
+                        {activity.period}
+                      </time>
+                      <div className="p-6 pt-12 flex flex-col justify-between h-full">
+                        <div>
+                          <h3 className="font-semibold text-lg mb-2 text-primary line-clamp-2">
+                            {activity.title}
+                          </h3>
+                          <p className="text-sm font-medium text-muted-foreground line-clamp-2">
+                            {activity.role} • {activity.organization}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious className="hidden md:flex" />
+        <CarouselNext className="hidden md:flex" />
+      </Carousel>
     </div>
   );
 }

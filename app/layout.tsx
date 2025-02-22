@@ -4,6 +4,7 @@ import type React from "react";
 import { Analytics } from "@vercel/analytics/react";
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -92,6 +93,7 @@ export default function RootLayout({
       <body className={inter.className}>
         {children}
         <Analytics />
+        <Toaster />
       </body>
     </html>
   );

@@ -21,9 +21,9 @@ export function Volunteering() {
         <div className="grid gap-6">
           {volunteering.map((volunteer) => (
             <div key={volunteer.title}>
-              <div className="flex justify-between items-start gap-4">
-                <div className="space-y-1">
-                  <div className="flex items-baseline gap-2">
+              <div className="flex flex-col gap-4">
+                <div className="flex justify-between items-start gap-4">
+                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-2">
                     <h3 className="font-semibold text-primary">
                       {volunteer.title}
                     </h3>
@@ -31,6 +31,11 @@ export function Volunteering() {
                       {volunteer.organization}
                     </span>
                   </div>
+                  <span className="text-sm text-muted-foreground whitespace-nowrap">
+                    {volunteer.period}
+                  </span>
+                </div>
+                <div className="space-y-1">
                   <p className="text-sm text-muted-foreground">
                     {volunteer.role}
                   </p>
@@ -45,9 +50,6 @@ export function Volunteering() {
                     ))}
                   </ul>
                 </div>
-                <span className="text-sm text-muted-foreground whitespace-nowrap">
-                  {volunteer.period}
-                </span>
               </div>
             </div>
           ))}

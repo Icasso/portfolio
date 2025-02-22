@@ -1,4 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 const experiences = [
   {
@@ -6,6 +7,7 @@ const experiences = [
     role: "Exchange Platform - Asset and Financial Product - Structured Financial Product",
     period: "Apr 2024 - Present",
     organization: "OKX",
+    type: "Full-time",
     description: "",
     highlights: [
       "Building cool stuff",
@@ -17,6 +19,7 @@ const experiences = [
     role: "Exchange Platform - Asset and Financial Product - Structured Financial Product",
     period: "Apr 2022 - Apr 2024",
     organization: "OKX",
+    type: "Full-time",
     description: "Supernova Graduation Program (class of 2022)",
     highlights: [
       "2022 - Structured OTC Product - Dual Investment",
@@ -34,6 +37,7 @@ const experiences = [
     role: "Information Technology Division - Solutions Development Department - EOSS",
     period: "Aug 2020 - May 2021",
     organization: "HK Electric",
+    type: "Internship",
     description: "",
     highlights: [
       "Designed & built low-latency & real-time power plant monitoring dashboard",
@@ -49,16 +53,24 @@ export function Experience() {
         <div className="grid gap-6">
           {experiences.map((experience) => (
             <div key={experience.title}>
-              <div className="flex justify-between items-start gap-4">
-                <div className="space-y-1">
-                  <div className="flex items-baseline gap-2">
+              <div className="flex flex-col gap-4">
+                <div className="flex justify-between items-start gap-4">
+                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-2">
                     <h3 className="font-semibold text-primary">
                       {experience.title}
                     </h3>
                     <span className="text-sm text-muted-foreground">
                       {experience.organization}
                     </span>
+                    <Badge variant="secondary" className="text-xs">
+                      {experience.type}
+                    </Badge>
                   </div>
+                  <span className="text-sm text-muted-foreground whitespace-nowrap">
+                    {experience.period}
+                  </span>
+                </div>
+                <div className="space-y-1">
                   <p className="text-sm text-muted-foreground">
                     {experience.role}
                   </p>
@@ -73,9 +85,6 @@ export function Experience() {
                     ))}
                   </ul>
                 </div>
-                <span className="text-sm text-muted-foreground whitespace-nowrap">
-                  {experience.period}
-                </span>
               </div>
             </div>
           ))}
