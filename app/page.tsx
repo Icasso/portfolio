@@ -5,7 +5,6 @@ import { Experience } from "./components/Experience";
 import { Skills } from "./components/Skills";
 import { Volunteering } from "./components/Volunteering";
 import { Education } from "./components/Education";
-import { Analytics } from "@vercel/analytics/react";
 
 export default function Portfolio() {
   return (
@@ -35,7 +34,6 @@ export default function Portfolio() {
           </section>
         </div>
       </div>
-      <Analytics />
     </div>
   );
 }
