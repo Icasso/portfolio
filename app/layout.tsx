@@ -2,10 +2,15 @@ import "@/app/globals.css";
 import { Inter } from "next/font/google";
 import type React from "react";
 import { Analytics } from "@vercel/analytics/react";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://portfolio-icassos-projects.vercel.app/"),
@@ -46,10 +51,6 @@ export const metadata: Metadata = {
       index: true,
       follow: true,
     },
-  },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
   },
   verification: {
     google: "hhE-HfO-ctbXqBG4NIMfgEMRMIlrljlyBlFA0U1MSy4",
