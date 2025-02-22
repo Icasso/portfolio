@@ -1,5 +1,9 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { ExternalLink, Github } from "lucide-react";
+import Link from "next/link";
+import { Separator } from "@/components/ui/separator";
 
 const projects = [
   {
@@ -19,7 +23,13 @@ const projects = [
       "Vercel",
       "CI/CD",
     ],
-    link: "https://github.com/Icasso/portfolio",
+    links: [
+      {
+        url: "https://github.com/Icasso/portfolio",
+        label: "View Project",
+        icon: <Github className="w-4 h-4" />,
+      },
+    ],
   },
   {
     title: "Reddit Sentiment Index",
@@ -36,7 +46,23 @@ const projects = [
       "Reddit API",
       "Financial Data",
     ],
-    link: "https://www.cs.cityu.edu.hk/academic-programmes/bsc-computer-science/final-year-project-showcase-0#Year%202021-2022",
+    links: [
+      {
+        url: "https://www.cs.cityu.edu.hk/academic-programmes/bsc-computer-science/final-year-project-showcase-0#Year%202021-2022",
+        label: "View Showcase",
+        icon: <ExternalLink className="w-4 h-4" />,
+      },
+      {
+        url: "https://github.com/Icasso/streamlit-fyp",
+        label: "Streamlit App",
+        icon: <Github className="w-4 h-4" />,
+      },
+      {
+        url: "https://github.com/Icasso/DataSpell-EAP-Projects",
+        label: "Data Analysis",
+        icon: <Github className="w-4 h-4" />,
+      },
+    ],
   },
 ];
 
@@ -44,16 +70,15 @@ export function Projects() {
   return (
     <Card>
       <CardContent>
-        <div className="grid gap-6">
-          {projects.map((project) => (
-            <div key={project.title} className="group">
+        <div className="space-y-6">
+          {projects.map((project, index) => (
+            <div key={project.title}>
+              {index > 0 && <Separator className="mb-6" />}
               <div className="flex flex-col gap-4">
                 <div className="flex justify-between items-start gap-4">
                   <div className="flex flex-col sm:flex-row sm:items-baseline gap-2">
                     <h3 className="font-semibold text-primary">
-                      <a href={project.link} className="hover:underline">
-                        {project.title}
-                      </a>
+                      {project.title}
                     </h3>
                     <Badge variant="secondary" className="text-xs">
                       {project.type}
@@ -63,7 +88,7 @@ export function Projects() {
                     {project.date}
                   </span>
                 </div>
-                <div className="space-y-1">
+                <div className="space-y-4">
                   <p className="text-sm text-muted-foreground">
                     {project.description}
                   </p>
@@ -74,6 +99,27 @@ export function Projects() {
                       </Badge>
                     ))}
                   </div>
+                  {project.links && (
+                    <div className="flex flex-wrap gap-2">
+                      {project.links.map((link) => (
+                        <Button
+                          key={link.url}
+                          size="sm"
+                          asChild
+                          className="gap-2"
+                        >
+                          <Link
+                            href={link.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {link.label}
+                            {link.icon}
+                          </Link>
+                        </Button>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

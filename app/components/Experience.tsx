@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
 
 const experiences = [
   {
@@ -7,6 +8,7 @@ const experiences = [
     role: "Exchange Platform - Asset and Financial Product - Structured Financial Product",
     period: "Apr 2024 - Present",
     organization: "OKX",
+    organizationUrl: "https://www.okx.com",
     type: "Full-time",
     description: "",
     highlights: [
@@ -19,6 +21,7 @@ const experiences = [
     role: "Exchange Platform - Asset and Financial Product - Structured Financial Product",
     period: "Apr 2022 - Apr 2024",
     organization: "OKX",
+    organizationUrl: "https://www.okx.com",
     type: "Full-time",
     description: "Supernova Graduation Program (class of 2022)",
     highlights: [
@@ -37,6 +40,7 @@ const experiences = [
     role: "Information Technology Division - Solutions Development Department - EOSS",
     period: "Aug 2020 - May 2021",
     organization: "HK Electric",
+    organizationUrl: "https://www.hkelectric.com",
     type: "Internship",
     description: "",
     highlights: [
@@ -59,9 +63,14 @@ export function Experience() {
                     <h3 className="font-semibold text-primary">
                       {experience.title}
                     </h3>
-                    <span className="text-sm text-muted-foreground">
+                    <Link
+                      href={experience.organizationUrl}
+                      className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       {experience.organization}
-                    </span>
+                    </Link>
                     <Badge variant="secondary" className="text-xs">
                       {experience.type}
                     </Badge>

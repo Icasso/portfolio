@@ -22,7 +22,7 @@ export default function Portfolio() {
             aria-labelledby="experience-heading"
           >
             <h2 id="experience-heading" className="text-2xl font-semibold mb-6">
-              Experience
+              Work Experience
             </h2>
             <Experience />
           </article>
@@ -65,7 +65,7 @@ export default function Portfolio() {
               id="volunteering-heading"
               className="text-2xl font-semibold mb-6"
             >
-              Volunteering
+              Volunteering & Community Service
             </h2>
             <Volunteering />
           </article>
