@@ -2,6 +2,7 @@
 
 import { Header } from "./components/Header";
 import { Experience } from "./components/Experience";
+import { AchievementBadges } from "./components/AchievementBadges";
 import { Skills } from "./components/Skills";
 import { Volunteering } from "./components/Volunteering";
 import { Education } from "./components/Education";
@@ -24,7 +25,10 @@ export default function Portfolio() {
             <h2 id="experience-heading" className="text-2xl font-semibold mb-6">
               Work Experience
             </h2>
-            <Experience />
+            <div className="space-y-6">
+              <Experience />
+              <AchievementBadges />
+            </div>
           </article>
 
           <article
