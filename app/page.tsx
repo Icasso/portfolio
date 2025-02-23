@@ -9,6 +9,7 @@ import { Education } from "./components/Education";
 import { Awards } from "./components/Awards";
 import { Projects } from "./components/Projects";
 import { Extracurriculars } from "./components/Extracurriculars";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export default function Portfolio() {
   return (
@@ -96,6 +97,7 @@ export default function Portfolio() {
           </article>
         </div>
       </div>
+      <SpeedInsights />
     </main>
   );
 }
