@@ -14,7 +14,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://portfolio-icassos-projects.vercel.app/"),
+  metadataBase: new URL("https://isaactsui.xyz/"),
   title: {
     default: "Isaac Tsui Hoi Ming - Software Engineer",
     template: "%s | Isaac's Portfolio",
@@ -38,12 +38,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     siteName: "Isaac's Portfolio",
+    images: ["public/og.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Isaac Tsui Hoi Ming - Software Engineer",
     description:
       "Software Engineer with experience in financial technology, full-stack development, and distributed systems.",
+    images: ["public/og.png"],
   },
   robots: {
     index: true,
@@ -73,7 +75,7 @@ export default function RootLayout({
               "@type": "Person",
               "name": "Tsui Hoi Ming",
               "jobTitle": "Software Engineer",
-              "url": "https://portfolio-icassos-projects.vercel.app/",
+              "url": "https://isaactsui.xyz/",
               "knowsAbout": [
                 "Software Development",
                 "Financial Technology",
