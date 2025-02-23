@@ -34,10 +34,12 @@ const FUNNY_LINES_ZH = [
   "我睇YouTube睇到腦溶 🧠",
 ] as const;
 
-const TITLE_EN = ["Need a soul-crushing web app or portfolio?"] as const;
-const TITLE_ZH = ["想整個嚇死人嘅網站或者網上履歷？"] as const;
+const TITLE_EN = [
+  "Need a Silicon Valley startup-looking web app or portfolio?",
+] as const;
+const TITLE_ZH = ["想整個矽谷初創feel嘅網站或者網上履歷？"] as const;
 
-const PRICING_TITLE_EN = ["I can build you a portfolio like this"] as const;
+const PRICING_TITLE_EN = ["I can build you a website like this"] as const;
 const PRICING_TITLE_ZH = ["我可以幫你整一個咁嘅網站"] as const;
 
 const PRICING_FEATURES_EN = [
@@ -131,11 +133,11 @@ export default function StudioPortfolio() {
         <div className="container max-w-4xl px-4 my-auto">
           <div className="text-center">
             <h1
-              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/50"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/50"
               aria-label="Need a Portfolio?"
             >
-              <div className="h-[8rem] sm:h-[10rem] md:h-[12rem] flex items-center justify-center">
-                <span className="inline-block leading-[1.1] max-w-[95%] px-4">
+              <div className="h-[10rem] sm:h-[12rem] md:h-[14rem] flex items-center justify-center">
+                <span className="inline-block leading-[1.15] max-w-[90%] sm:max-w-[85%] px-4">
                   {currentTitle}
                 </span>
               </div>
