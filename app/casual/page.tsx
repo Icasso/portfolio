@@ -6,7 +6,6 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { CasualCommandMenu } from "../components/CasualCommandMenu";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useMemo } from "react";
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
 const FUNNY_LINES = [
@@ -244,8 +243,8 @@ export default function CasualPortfolio() {
                       Zero payment • 1-day delivery (impossible) • Modern stack
                     </p>
                     <p className="text-xs text-muted-foreground/80 mt-1">
-                      Just DM me on Instagram and I'll build you a page like
-                      this
+                      Just DM me on Instagram and I&apos;ll build you a page
+                      like this
                     </p>
                   </div>
                 </div>
