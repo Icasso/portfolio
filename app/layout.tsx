@@ -38,14 +38,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     siteName: "Isaac's Portfolio",
-    images: ["public/og.png"],
+    images: ["https://raw.githubusercontent.com/Icasso/portfolio/refs/heads/main/public/og.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Isaac Tsui Hoi Ming - Software Engineer",
     description:
       "Software Engineer with experience in financial technology, full-stack development, and distributed systems.",
-    images: ["public/og.png"],
+    images: ["https://raw.githubusercontent.com/Icasso/portfolio/refs/heads/main/public/og.png"],
   },
   robots: {
     index: true,

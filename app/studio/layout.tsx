@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     siteName: "Isaac Tsui",
     images: [
       {
-        url: "public/og-studio.png",
+        url: "https://raw.githubusercontent.com/Icasso/portfolio/refs/heads/main/public/og-studio.png",
         width: 1200,
         height: 630,
         alt: "Portfolio Studio Preview",
