@@ -9,6 +9,7 @@ import {
   CommandList,
 } from "@/components/ui/command";
 import { HeartFilledIcon } from "@radix-ui/react-icons";
+import { Command } from "lucide-react";
 
 export function CommandMenu() {
   const router = useRouter();
@@ -40,6 +41,15 @@ export function CommandMenu() {
           >
             <HeartFilledIcon className="mr-2 h-4 w-4" />
             <span>Portfolio Studio</span>
+          </CommandItem>
+          <CommandItem
+            onSelect={() => {
+              setOpen(false);
+              router.push("/");
+            }}
+          >
+            <Command className="mr-2 h-4 w-4" />
+            <span>Professional Resume</span>
           </CommandItem>
         </CommandGroup>
       </CommandList>
