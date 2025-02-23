@@ -5,7 +5,7 @@ import { Command } from "lucide-react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { CommandMenu } from "../components/CommandMenu";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect, useMemo, useRef } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
@@ -33,10 +33,6 @@ const FUNNY_LINES_ZH = [
   "我GameStop賺咗錢之後輸晒 📈📉",
   "我睇YouTube睇到腦溶 🧠",
 ] as const;
-
-type RotatingTextHookReturn =
-  | (typeof FUNNY_LINES_EN)[number]
-  | (typeof FUNNY_LINES_ZH)[number];
 
 const TITLE_EN = ["Need a soul-crushing web app or portfolio?"] as const;
 const TITLE_ZH = ["想整個嚇死人嘅網站或者網上履歷？"] as const;
