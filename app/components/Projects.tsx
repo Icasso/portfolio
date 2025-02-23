@@ -7,6 +7,41 @@ import { Separator } from "@/components/ui/separator";
 
 const projects = [
   {
+    title: "Portfolio Studio",
+    type: "Side Project",
+    date: "2025",
+    description:
+      "A Silicon Valley startup-style web app showcase with bilingual support. Features modern UI elements, interactive animations, and a playful take on startup culture. Built as part of my portfolio website to demonstrate creative web development capabilities.",
+    highlights: [
+      "Implemented bilingual support (English/Cantonese) with smooth transitions",
+      "Created interactive elements including rotating taglines and animated statistics",
+      "Designed Silicon Valley-inspired badges and pricing showcase",
+      "Built responsive carousel with automatic playback for pricing cards",
+      "Optimized for SEO with metadata and Open Graph configuration",
+    ],
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Shadcn/ui",
+      "SEO",
+      "i18n",
+    ],
+    links: [
+      {
+        url: "https://isaactsui.xyz/studio",
+        label: "View Project",
+        icon: <ExternalLinkIcon className="w-4 h-4" />,
+      },
+      {
+        url: "https://github.com/Icasso/portfolio",
+        label: "Source Code",
+        icon: <GitHubLogoIcon className="w-4 h-4" />,
+      },
+    ],
+  },
+  {
     title: "Personal Portfolio Website",
     type: "Side Project",
     date: "2025",
