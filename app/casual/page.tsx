@@ -7,9 +7,10 @@ import { CasualCommandMenu } from "../components/CasualCommandMenu";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useMemo } from "react";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 const FUNNY_LINES = [
-  "Actually I can build you this website in 1 minute, DM me if interested",
+  "Actually I can build you this website in minutes, DM me if interested",
   "My name is Isaac",
   "I go to work by MTR",
   "wen no need work",
@@ -242,10 +243,17 @@ export default function CasualPortfolio() {
                     <p className="text-xs text-muted-foreground/80">
                       Zero payment • 1-day delivery (impossible) • Modern stack
                     </p>
-                    <p className="text-xs text-muted-foreground/80 mt-1">
-                      Just DM me on Instagram and I&apos;ll build you a page
-                      like this
-                    </p>
+                    <div className="mt-4">
+                      <Button asChild size="sm" className="gap-2">
+                        <a
+                          href="https://www.instagram.com/isaactsui3000"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Contact me
+                        </a>
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </div>
