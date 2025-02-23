@@ -35,7 +35,7 @@ export function CommandMenu() {
           <CommandItem
             onSelect={() => {
               setOpen(false);
-              router.push("/casual");
+              router.push("/studio");
             }}
           >
             <HeartFilledIcon className="mr-2 h-4 w-4" />

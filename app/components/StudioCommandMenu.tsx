@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/command";
 import { Command } from "lucide-react";
 
-export function CasualCommandMenu() {
+export function StudioCommandMenu() {
   const router = useRouter();
   const [open, setOpen] = useState(false);
 

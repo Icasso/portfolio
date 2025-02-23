@@ -3,7 +3,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Command } from "lucide-react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { CasualCommandMenu } from "../components/CasualCommandMenu";
+import { StudioCommandMenu } from "../components/StudioCommandMenu";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useMemo } from "react";
 import { Card } from "@/components/ui/card";
@@ -70,7 +70,7 @@ function useCountUp(end: number, duration: number = 2): number {
   return count;
 }
 
-export default function CasualPortfolio() {
+export default function StudioPortfolio() {
   const currentLine = useRotatingText(FUNNY_LINES, 2000);
   const visits = 100;
 
@@ -280,7 +280,7 @@ export default function CasualPortfolio() {
       </footer>
 
       <SpeedInsights />
-      <CasualCommandMenu />
+      <StudioCommandMenu />
     </div>
   );
 }

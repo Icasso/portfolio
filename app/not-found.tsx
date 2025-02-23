@@ -7,7 +7,9 @@ export default function NotFound() {
   const router = useRouter();
 
   useEffect(() => {
-    router.push("/casual");
+    setTimeout(() => {
+      router.push("/studio");
+    }, 2000);
   }, [router]);
 
   return null;
