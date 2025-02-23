@@ -12,6 +12,8 @@ import { Extracurriculars } from "./components/Extracurriculars";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { CommandMenu } from "./components/CommandMenu";
 import { Footer } from "./components/Footer";
+import { Button } from "@/components/ui/button";
+import { Command } from "lucide-react";
 
 export default function Portfolio() {
   return (
@@ -108,6 +110,22 @@ export default function Portfolio() {
         </div>
       </div>
       <Footer />
+
+      <Button
+        size="icon"
+        variant="outline"
+        className="fixed right-4 bottom-4 sm:hidden h-10 w-10 rounded-full shadow-lg bg-background/95 backdrop-blur-sm"
+        onClick={() => {
+          const event = new KeyboardEvent("keydown", {
+            key: "k",
+            metaKey: true,
+          });
+          document.dispatchEvent(event);
+        }}
+      >
+        <Command className="h-4 w-4" />
+      </Button>
+
       <SpeedInsights />
       <CommandMenu />
     </div>

@@ -39,7 +39,7 @@ export function StudioCommandMenu() {
             }}
           >
             <Command className="mr-2 h-4 w-4" />
-            <span>Switch to Professional Version</span>
+            <span>Profession Resume</span>
           </CommandItem>
         </CommandGroup>
       </CommandList>
