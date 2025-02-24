@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://isaactsui.xyz/"),
   title: {
     default: "Isaac Tsui Hoi Ming - Software Engineer",
-    template: "%s | Isaac's Portfolio",
+    template: "%s | Tsui Hoi Ming",
   },
   description:
     "Software Engineer with experience in financial technology, full-stack development, and distributed systems. Specializing in Java, Python, and .NET development.",
@@ -38,14 +38,18 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     siteName: "Isaac's Portfolio",
-    images: ["https://raw.githubusercontent.com/Icasso/portfolio/refs/heads/main/public/og.png"],
+    images: [
+      "https://raw.githubusercontent.com/Icasso/portfolio/refs/heads/main/public/og.png",
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Isaac Tsui Hoi Ming - Software Engineer",
     description:
       "Software Engineer with experience in financial technology, full-stack development, and distributed systems.",
-    images: ["https://raw.githubusercontent.com/Icasso/portfolio/refs/heads/main/public/og.png"],
+    images: [
+      "https://raw.githubusercontent.com/Icasso/portfolio/refs/heads/main/public/og.png",
+    ],
   },
   robots: {
     index: true,
