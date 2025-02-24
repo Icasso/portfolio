@@ -42,7 +42,8 @@ The site is deployed on Vercel. Any push to the main branch will trigger a new d
 - Website: [isaactsui.xyz](https://isaactsui.xyz)
 - Instagram: [@isaactsui3000](https://instagram.com/isaactsui3000)
 - LinkedIn: [Isaac Tsui](https://linkedin.com/in/tsuihoiming)
-## Official domain
+## Official domains
 
+- [isaactsui.xyz](https://isaactsui.xyz)
 - [www.isaactsui.xyz](https://www.isaactsui.xyz)
-- [https://portfolio-icassos-projects.vercel.app/](https://portfolio-icassos-projects.vercel.app/)
+- [portfolio-icassos-projects.vercel.app/](https://portfolio-icassos-projects.vercel.app/)
