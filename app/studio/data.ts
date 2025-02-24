@@ -20,7 +20,7 @@ export const FUNNY_LINES_EN = [
 
 export const FUNNY_LINES_ZH = [
   "用AI改變世界，用CV改變代碼",
-  "創業最緊要睇起 (所以搵我整網站)",
+  "創業最緊要睇得 (所以搵我整網站)",
   "用最貴嘅MacBook寫最cheap嘅code",
   "幫你打造下一個獨角獸 (可能)",
   "連啲VC睇完都想俾錢 (如果有)",
