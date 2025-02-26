@@ -46,4 +46,5 @@ The site is deployed on Vercel. Any push to the main branch will trigger a new d
 
 - [isaactsui.xyz](https://isaactsui.xyz)
 - [www.isaactsui.xyz](https://www.isaactsui.xyz)
+- [portfolio-isaac-tsui.vercel.app/](https://portfolio-isaac-tsui.vercel.app/)
 - [portfolio-icassos-projects.vercel.app/](https://portfolio-icassos-projects.vercel.app/)

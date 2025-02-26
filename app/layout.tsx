@@ -11,10 +11,21 @@ const inter = Inter({ subsets: ["latin"] });
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "white" },
+    { media: "(prefers-color-scheme: dark)", color: "#0A0A0A" },
+  ],
+};
+
+const ogImage = {
+  url: "/og.png",
+  width: 1200,
+  height: 630,
+  alt: "Isaac Tsui - Software Engineer Portfolio",
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://isaactsui.xyz/"),
+  metadataBase: new URL("https://isaactsui.xyz"),
   title: {
     default: "Isaac Tsui Hoi Ming - Software Engineer",
     template: "%s | Tsui Hoi Ming",
@@ -31,25 +42,32 @@ export const metadata: Metadata = {
     "Trading Technology",
     "Web Development",
   ],
+  authors: [{ name: "Isaac Tsui", url: "https://isaactsui.xyz" }],
+  creator: "Isaac Tsui",
+  publisher: "Isaac Tsui",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   openGraph: {
+    type: "website",
+    locale: "en_US",
+    alternateLocale: "zh_HK",
+    url: "https://isaactsui.xyz",
+    siteName: "Isaac Tsui",
     title: "Isaac Tsui Hoi Ming - Software Engineer",
     description:
       "Software Engineer with experience in financial technology, full-stack development, and distributed systems.",
-    type: "website",
-    locale: "en_US",
-    siteName: "Isaac's Portfolio",
-    images: [
-      "https://raw.githubusercontent.com/Icasso/portfolio/refs/heads/main/public/og.png",
-    ],
+    images: [ogImage],
   },
   twitter: {
     card: "summary_large_image",
     title: "Isaac Tsui Hoi Ming - Software Engineer",
     description:
       "Software Engineer with experience in financial technology, full-stack development, and distributed systems.",
-    images: [
-      "https://raw.githubusercontent.com/Icasso/portfolio/refs/heads/main/public/og.png",
-    ],
+    creator: "@icasso_thm",
+    images: [ogImage],
   },
   robots: {
     index: true,
@@ -57,11 +75,12 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
-  verification: {
-    google: "hhE-HfO-ctbXqBG4NIMfgEMRMIlrljlyBlFA0U1MSy4",
-  },
+  category: "technology",
 };
 
 export default function RootLayout({
@@ -78,8 +97,15 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Person",
               "name": "Tsui Hoi Ming",
+              "givenName": "Hoi Ming",
+              "familyName": "Tsui",
+              "alternateName": "Isaac Tsui",
               "jobTitle": "Software Engineer",
               "url": "https://isaactsui.xyz/",
+              "sameAs": [
+                "https://github.com/Icasso",
+                "https://www.linkedin.com/in/isaactsui"
+              ],
               "knowsAbout": [
                 "Software Development",
                 "Financial Technology",
@@ -90,7 +116,15 @@ export default function RootLayout({
               ],
               "alumniOf": {
                 "@type": "CollegeOrUniversity",
-                "name": "City University of Hong Kong"
+                "name": "City University of Hong Kong",
+                "url": "https://www.cityu.edu.hk/"
+              },
+              "workLocation": {
+                "@type": "Place",
+                "address": {
+                  "@type": "PostalAddress",
+                  "addressCountry": "Hong Kong"
+                }
               }
             }
           `}
