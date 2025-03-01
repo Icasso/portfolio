@@ -1,4 +1,3 @@
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Icasso_portfolio&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Icasso_portfolio)
 # Isaac's Portfolio
 
 A modern, responsive portfolio website built with Next.js, TypeScript, and Vercel.
