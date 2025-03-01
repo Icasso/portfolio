@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { memo } from "react";
 import {
   Tooltip,
   TooltipContent,
@@ -16,7 +17,7 @@ interface NFTBadgeProps {
   className?: string;
 }
 
-export function NFTBadge({
+function NFTBadgeBase({
   imageUrl,
   title,
   description,
@@ -39,6 +40,8 @@ export function NFTBadge({
         fill
         unoptimized={isAnimatedGif}
         className="object-cover group-hover:scale-110 transition-transform duration-200"
+        sizes="48px"
+        loading="lazy"
       />
     </div>
   );
@@ -70,3 +73,5 @@ export function NFTBadge({
 
   return content;
 }
+
+export const NFTBadge = memo(NFTBadgeBase);

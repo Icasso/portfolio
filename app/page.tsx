@@ -1,19 +1,45 @@
 "use client";
 
 import { Header } from "./components/Header";
-import { Experience } from "./components/Experience";
+import { lazy, Suspense } from "react";
 import { AchievementBadges } from "./components/AchievementBadges";
 import { Skills } from "./components/Skills";
-import { Volunteering } from "./components/Volunteering";
-import { Education } from "./components/Education";
-import { Awards } from "./components/Awards";
-import { Projects } from "./components/Projects";
-import { Extracurriculars } from "./components/Extracurriculars";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { CommandMenu } from "./components/CommandMenu";
 import { Footer } from "./components/Footer";
 import { Button } from "@/components/ui/button";
 import { Command } from "lucide-react";
+
+// Lazy load below-the-fold components
+const Experience = lazy(() =>
+  import("./components/Experience").then((mod) => ({ default: mod.Experience }))
+);
+const Volunteering = lazy(() =>
+  import("./components/Volunteering").then((mod) => ({
+    default: mod.Volunteering,
+  }))
+);
+const Education = lazy(() =>
+  import("./components/Education").then((mod) => ({ default: mod.Education }))
+);
+const Awards = lazy(() =>
+  import("./components/Awards").then((mod) => ({ default: mod.Awards }))
+);
+const Projects = lazy(() =>
+  import("./components/Projects").then((mod) => ({ default: mod.Projects }))
+);
+const Extracurriculars = lazy(() =>
+  import("./components/Extracurriculars").then((mod) => ({
+    default: mod.Extracurriculars,
+  }))
+);
+
+// Loading fallback component
+const LoadingFallback = () => (
+  <div className="animate-pulse">
+    <div className="h-[300px] bg-muted rounded-lg"></div>
+  </div>
+);
 
 export default function Portfolio() {
   return (
@@ -35,7 +61,9 @@ export default function Portfolio() {
                 Work Experience
               </h2>
               <div className="space-y-6">
-                <Experience />
+                <Suspense fallback={<LoadingFallback />}>
+                  <Experience />
+                </Suspense>
                 <AchievementBadges />
               </div>
             </article>
@@ -51,7 +79,9 @@ export default function Portfolio() {
               >
                 Education
               </h2>
-              <Education />
+              <Suspense fallback={<LoadingFallback />}>
+                <Education />
+              </Suspense>
             </article>
 
             <article id="skills" role="region" aria-labelledby="skills-heading">
@@ -69,7 +99,9 @@ export default function Portfolio() {
               <h2 id="projects-heading" className="text-2xl font-semibold mb-6">
                 Academic & Side Projects
               </h2>
-              <Projects />
+              <Suspense fallback={<LoadingFallback />}>
+                <Projects />
+              </Suspense>
             </article>
 
             <article
@@ -83,14 +115,18 @@ export default function Portfolio() {
               >
                 Volunteering & Community Service
               </h2>
-              <Volunteering />
+              <Suspense fallback={<LoadingFallback />}>
+                <Volunteering />
+              </Suspense>
             </article>
 
             <article id="awards" role="region" aria-labelledby="awards-heading">
               <h2 id="awards-heading" className="text-2xl font-semibold mb-6">
                 Awards & Nominations
               </h2>
-              <Awards />
+              <Suspense fallback={<LoadingFallback />}>
+                <Awards />
+              </Suspense>
             </article>
 
             <article
@@ -104,7 +140,9 @@ export default function Portfolio() {
               >
                 Extracurricular Activities
               </h2>
-              <Extracurriculars />
+              <Suspense fallback={<LoadingFallback />}>
+                <Extracurriculars />
+              </Suspense>
             </article>
           </div>
         </div>
