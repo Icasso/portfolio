@@ -23,6 +23,9 @@ export function NFTBadge({
   nftUrl,
   className,
 }: NFTBadgeProps) {
+  // Check if the image is an animated GIF
+  const isAnimatedGif = imageUrl.toLowerCase().endsWith(".gif");
+
   const Badge = () => (
     <div
       className={cn(
@@ -34,6 +37,7 @@ export function NFTBadge({
         src={imageUrl}
         alt={title}
         fill
+        unoptimized={isAnimatedGif}
         className="object-cover group-hover:scale-110 transition-transform duration-200"
       />
     </div>

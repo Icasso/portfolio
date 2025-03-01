@@ -46,6 +46,7 @@
     "@types/node": "^20.17.19",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19",
+    "critters": "^0.0.23",
     "eslint": "^9",
     "eslint-config-next": "15.2.0-canary.69",
     "tailwindcss": "^4",

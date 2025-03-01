@@ -2,35 +2,45 @@ import { Clock } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import {
   GitHubLogoIcon,
   LinkedInLogoIcon,
   EnvelopeClosedIcon,
 } from "@radix-ui/react-icons";
 
-export function Header() {
+// Separate component for time display to prevent unnecessary re-renders
+function TimeDisplay() {
   const [time, setTime] = useState<string>("");
 
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      setTime(
-        now.toLocaleTimeString("en-US", {
-          timeZone: "Asia/Hong_Kong",
-          hour: "2-digit",
-          minute: "2-digit",
-          hour12: false,
-        })
-      );
-    };
-
-    updateTime();
-    const timer = setInterval(updateTime, 1000);
-
-    return () => clearInterval(timer);
+  const updateTime = useCallback(() => {
+    const now = new Date();
+    setTime(
+      now.toLocaleTimeString("en-US", {
+        timeZone: "Asia/Hong_Kong",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+      })
+    );
   }, []);
 
+  useEffect(() => {
+    updateTime();
+    // Update every minute instead of every second
+    const timer = setInterval(updateTime, 60000);
+    return () => clearInterval(timer);
+  }, [updateTime]);
+
+  return (
+    <div className="flex items-center gap-1 text-sm text-muted-foreground">
+      <Clock className="w-4 h-4" />
+      <span>{time} (GMT+8)</span>
+    </div>
+  );
+}
+
+export function Header() {
   return (
     <header className="mb-12">
       <div className="flex justify-between items-start mb-4">
@@ -42,10 +52,7 @@ export function Header() {
             <h2 className="text-xl text-muted-foreground">
               Software Engineer, Hong Kong
             </h2>
-            <div className="flex items-center gap-1 text-sm text-muted-foreground">
-              <Clock className="w-4 h-4" />
-              <span>{time} (GMT+8)</span>
-            </div>
+            <TimeDisplay />
           </div>
           <p className="text-muted-foreground max-w-2xl mb-6">
             Software engineer specializing in high-performance backend
@@ -59,6 +66,8 @@ export function Header() {
           width={48}
           height={48}
           className="w-12 h-12 dark:invert"
+          priority
+          sizes="(max-width: 768px) 24px, 48px"
         />
       </div>
       <div className="flex gap-4">
