@@ -31,7 +31,8 @@ export default function NotFound() {
         </CardHeader>
         <CardContent className="space-y-4 text-center">
           <p className="text-muted-foreground">
-            The page you're looking for doesn't exist or has been moved.
+            The page you&apos;re looking for doesn&apos;t exist or has been
+            moved.
           </p>
           <p className="text-sm text-muted-foreground">
             Redirecting to homepage in 5 seconds...
