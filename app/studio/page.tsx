@@ -86,12 +86,6 @@ export default function StudioPortfolio() {
   const animatedCount = useCountUp(daysLived);
   const animatedVisits = useCountUp(visits);
 
-  const scrollToPricing = () => {
-    document
-      .getElementById("pricing-section")
-      ?.scrollIntoView({ behavior: "smooth" });
-  };
-
   useEffect(() => {
     const setVH = () => {
       const vh = window.innerHeight * 0.01;
@@ -167,15 +161,6 @@ export default function StudioPortfolio() {
                   />
                 ))}
               </div>
-
-              <Button
-                variant="secondary"
-                size="sm"
-                className="mt-12 gap-2"
-                onClick={scrollToPricing}
-              >
-                View pricing / 查看價錢 ↓
-              </Button>
             </div>
           </div>
         </section>
