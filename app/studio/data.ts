@@ -60,9 +60,8 @@ export const FEATURES_ZH = [
 ] as const;
 
 export const PRICING_INFO_EN =
-  "Price based on requirements • 1-day delivery (impossible) • Modern stack" as const;
-export const PRICING_INFO_ZH =
-  "價錢按需求而定 • 一日交貨（痴撚線）• 現代技術" as const;
+  "1-day delivery (impossible) • Modern stack" as const;
+export const PRICING_INFO_ZH = "一日交貨（痴撚線）• 現代技術" as const;
 
 export const ANIMATED_BADGES: AnimatedBadge[] = [
   {
