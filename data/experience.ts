@@ -12,13 +12,13 @@ export interface Experience {
 
 export const experiences: Experience[] = [
   {
-    title: "Associate Software Engineer II",
-    role: "Asset & Wealth Management",
+    title: "REDACTED",
+    role: "REDACTED",
     period: "Nov 2025 - Present",
-    organization: "JPMorgan Chase & Co.",
+    organization: "REDACTED",
     organizationUrl: "https://www.jpmorganchase.com/",
     type: "Full-time",
-    description: "Front office developer for Private Banking Technology",
+    description: "REDACTED",
     technologies: [
       "Python",
       "Pandas",
