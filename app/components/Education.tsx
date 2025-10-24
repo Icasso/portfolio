@@ -1,5 +1,3 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
 import { memo } from "react";
 import { education } from "@/data/education";
 
@@ -14,7 +12,7 @@ const EducationItem = memo(({ edu, isLast }: EducationItemProps) => {
       <div className="flex flex-col gap-4">
         <div className="flex justify-between items-start gap-4">
           <div className="flex flex-col sm:flex-row sm:items-baseline gap-2">
-            <h3 className="font-semibold text-lg text-foreground">
+            <h3 className="font-semibold text-xl text-foreground">
               {edu.title}
             </h3>
             <span className="text-sm text-muted-foreground">
@@ -36,7 +34,6 @@ const EducationItem = memo(({ edu, isLast }: EducationItemProps) => {
           )}
         </div>
       </div>
-      {!isLast && <Separator className="mt-6" />}
     </div>
   );
 });
@@ -45,19 +42,15 @@ EducationItem.displayName = "EducationItem";
 
 function EducationBase() {
   return (
-    <Card className="card-hover border-2">
-      <CardContent>
-        <div className="grid gap-6">
-          {education.map((edu, index) => (
-            <EducationItem
-              key={edu.title}
-              edu={edu}
-              isLast={index === education.length - 1}
-            />
-          ))}
-        </div>
-      </CardContent>
-    </Card>
+    <div className="grid gap-8">
+      {education.map((edu, index) => (
+        <EducationItem
+          key={edu.title}
+          edu={edu}
+          isLast={index === education.length - 1}
+        />
+      ))}
+    </div>
   );
 }
 

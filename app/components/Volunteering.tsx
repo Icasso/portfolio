@@ -1,4 +1,3 @@
-import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -17,7 +16,7 @@ const VolunteerItem = memo(({ volunteer }: VolunteerItemProps) => {
       <div className="flex flex-col gap-4">
         <div className="flex justify-between items-start gap-4">
           <div className="flex flex-col sm:flex-row sm:items-baseline gap-2">
-            <h3 className="font-semibold text-lg text-foreground">
+            <h3 className="font-semibold text-xl text-foreground">
               {volunteer.title}
             </h3>
             <Link
@@ -90,15 +89,11 @@ VolunteerItem.displayName = "VolunteerItem";
 
 function VolunteeringBase() {
   return (
-    <Card className="card-hover border-2">
-      <CardContent>
-        <div className="grid gap-6">
-          {volunteering.map((volunteer) => (
-            <VolunteerItem key={volunteer.title} volunteer={volunteer} />
-          ))}
-        </div>
-      </CardContent>
-    </Card>
+    <div className="grid gap-8">
+      {volunteering.map((volunteer) => (
+        <VolunteerItem key={volunteer.title} volunteer={volunteer} />
+      ))}
+    </div>
   );
 }
 

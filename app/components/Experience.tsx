@@ -1,6 +1,4 @@
-import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import { memo } from "react";
 import { experiences, Experience as ExperienceType } from "@/data/experience";
@@ -16,7 +14,7 @@ const ExperienceItem = memo(({ experience, isLast }: ExperienceItemProps) => {
       <div className="flex flex-col gap-4">
         <div className="flex justify-between items-start gap-4">
           <div className="flex flex-col sm:flex-row sm:items-baseline gap-2">
-            <h3 className="font-semibold text-lg text-foreground">
+            <h3 className="font-semibold text-xl text-foreground">
               {experience.title}
             </h3>
             <Link
@@ -56,7 +54,6 @@ const ExperienceItem = memo(({ experience, isLast }: ExperienceItemProps) => {
           </div>
         </div>
       </div>
-      {!isLast && <Separator className="mt-6" />}
     </div>
   );
 });
@@ -65,19 +62,15 @@ ExperienceItem.displayName = "ExperienceItem";
 
 function ExperienceBase() {
   return (
-    <Card className="card-hover border-2">
-      <CardContent>
-        <div className="grid gap-6">
-          {experiences.map((experience, index) => (
-            <ExperienceItem
-              key={experience.title}
-              experience={experience}
-              isLast={index === experiences.length - 1}
-            />
-          ))}
-        </div>
-      </CardContent>
-    </Card>
+    <div className="grid gap-8">
+      {experiences.map((experience, index) => (
+        <ExperienceItem
+          key={experience.title}
+          experience={experience}
+          isLast={index === experiences.length - 1}
+        />
+      ))}
+    </div>
   );
 }
 
