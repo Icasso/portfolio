@@ -27,7 +27,7 @@ const VolunteerItem = memo(({ volunteer }: VolunteerItemProps) => {
               {volunteer.organization}
             </Link>
           </div>
-          <span className="text-sm text-muted-foreground whitespace-nowrap">
+          <span className="text-sm font-mono text-muted-foreground whitespace-nowrap">
             {volunteer.period}
           </span>
         </div>
@@ -88,7 +88,7 @@ VolunteerItem.displayName = "VolunteerItem";
 
 function VolunteeringBase() {
   return (
-    <Card>
+    <Card className="card-hover border-2">
       <CardContent>
         <div className="grid gap-6">
           {volunteering.map((volunteer) => (

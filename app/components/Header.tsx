@@ -35,8 +35,6 @@ export function Header({ className = "" }: HeaderProps) {
         name="Tsui Hoi Ming, Isaac"
         title="Software Engineer"
         location="Hong Kong"
-        bio="Software development engineer harnessing artificial intelligence to craft fintech solutions that deliver seamless, game-changing performance, with a touch of Java and Python finesse."
-        avatarSrc="/icon.png"
         className="mb-4"
       />
       <SocialLinks links={socialLinks} />

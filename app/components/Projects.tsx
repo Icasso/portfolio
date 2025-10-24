@@ -8,7 +8,7 @@ import { projects } from "@/data/projects";
 
 function ProjectsBase() {
   return (
-    <Card>
+    <Card className="card-hover border-2">
       <CardContent>
         <div className="space-y-6">
           {projects.map((project, index) => (
@@ -17,14 +17,14 @@ function ProjectsBase() {
               <div className="flex flex-col gap-4">
                 <div className="flex justify-between items-start gap-4">
                   <div className="flex flex-col sm:flex-row sm:items-baseline gap-2">
-                    <h3 className="font-semibold text-primary">
+                    <h3 className="font-semibold text-lg text-primary">
                       {project.title}
                     </h3>
                     <Badge variant="secondary" className="text-xs">
                       {project.type}
                     </Badge>
                   </div>
-                  <span className="text-sm text-muted-foreground whitespace-nowrap">
+                  <span className="text-sm font-mono text-muted-foreground whitespace-nowrap">
                     {project.date}
                   </span>
                 </div>
@@ -58,6 +58,7 @@ function ProjectsBase() {
                             target="_blank"
                             rel="noopener noreferrer"
                           >
+                            {link.icon}
                             {link.label}
                           </Link>
                         </Button>

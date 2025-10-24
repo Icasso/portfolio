@@ -17,10 +17,9 @@ function SocialLinksBase({ links, className = "" }: SocialLinksProps) {
   return (
     <div className={`flex gap-4 ${className}`}>
       {links.map((link) => (
-        <Button key={link.href} variant="outline" size="sm" asChild>
+        <Button key={link.href} size="sm" asChild className="gap-2">
           <Link
             href={link.href}
-            className="flex items-center gap-2"
             target={link.href.startsWith("http") ? "_blank" : undefined}
             rel={
               link.href.startsWith("http") ? "noopener noreferrer" : undefined

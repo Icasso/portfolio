@@ -19,7 +19,7 @@ const EducationItem = memo(({ edu, isLast }: EducationItemProps) => {
               {edu.organization}
             </span>
           </div>
-          <span className="text-sm text-muted-foreground whitespace-nowrap">
+          <span className="text-sm font-mono text-muted-foreground whitespace-nowrap">
             {edu.period}
           </span>
         </div>
@@ -43,7 +43,7 @@ EducationItem.displayName = "EducationItem";
 
 function EducationBase() {
   return (
-    <Card>
+    <Card className="card-hover border-2">
       <CardContent>
         <div className="grid gap-6">
           {education.map((edu, index) => (

@@ -11,14 +11,14 @@ import { skillCategories } from "@/data/skills";
 
 export function Skills() {
   return (
-    <Card>
+    <Card className="card-hover border-2">
       <CardContent>
         <div className="space-y-6">
           {skillCategories.map((category, index) => (
             <div key={category.category}>
               {index > 0 && <Separator className="mb-6" />}
               <div>
-                <h3 className="font-semibold text-primary mb-3">
+                <h3 className="font-semibold text-lg text-primary mb-4">
                   {category.category}
                 </h3>
                 <TooltipProvider>
@@ -28,12 +28,12 @@ export function Skills() {
                         <TooltipTrigger asChild>
                           <Badge
                             variant="secondary"
-                            className="cursor-help hover:bg-secondary/80"
+                            className="cursor-help hover:bg-secondary/80 hover:scale-105 transition-all"
                           >
                             {skill.name}
                           </Badge>
                         </TooltipTrigger>
-                        <TooltipContent>
+                        <TooltipContent className="max-w-xs">
                           <p>{skill.details}</p>
                         </TooltipContent>
                       </Tooltip>

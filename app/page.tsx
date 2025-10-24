@@ -2,7 +2,6 @@
 
 import { Header } from "./components/Header";
 import { lazy, Suspense } from "react";
-import { AchievementBadges } from "./components/AchievementBadges";
 import { Skills } from "./components/Skills";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { CommandMenu } from "./components/CommandMenu";
@@ -35,39 +34,38 @@ const LoadingFallback = () => (
 
 export default function Portfolio() {
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="min-h-screen flex flex-col">
       <div className="flex-1">
-        <div className="container max-w-4xl px-4 py-8 mx-auto">
+        <div className="container max-w-4xl px-4 py-12 mx-auto">
           <Header />
 
-          <div className="space-y-16 mb-16">
+          <div className="space-y-20 md:space-y-24 mb-24">
             <article
               id="experience"
               role="region"
               aria-labelledby="experience-heading"
+              className="animate-fade-in-up"
             >
               <h2
                 id="experience-heading"
-                className="text-2xl font-semibold mb-6"
+                className="text-sm font-bold tracking-[0.15em] uppercase mb-8 pb-3 border-b border-foreground/10 text-foreground/70"
               >
                 Work Experience
               </h2>
-              <div className="space-y-6">
-                <Suspense fallback={<LoadingFallback />}>
-                  <Experience />
-                </Suspense>
-                <AchievementBadges />
-              </div>
+              <Suspense fallback={<LoadingFallback />}>
+                <Experience />
+              </Suspense>
             </article>
 
             <article
               id="education"
               role="region"
               aria-labelledby="education-heading"
+              className="animate-fade-in-up"
             >
               <h2
                 id="education-heading"
-                className="text-2xl font-semibold mb-6"
+                className="text-sm font-bold tracking-[0.15em] uppercase mb-8 pb-3 border-b border-foreground/10 text-foreground/70"
               >
                 Education
               </h2>
@@ -76,8 +74,16 @@ export default function Portfolio() {
               </Suspense>
             </article>
 
-            <article id="skills" role="region" aria-labelledby="skills-heading">
-              <h2 id="skills-heading" className="text-2xl font-semibold mb-6">
+            <article
+              id="skills"
+              role="region"
+              aria-labelledby="skills-heading"
+              className="animate-fade-in-up"
+            >
+              <h2
+                id="skills-heading"
+                className="text-sm font-bold tracking-[0.15em] uppercase mb-8 pb-3 border-b border-foreground/10 text-foreground/70"
+              >
                 Skills
               </h2>
               <Skills />
@@ -87,8 +93,12 @@ export default function Portfolio() {
               id="projects"
               role="region"
               aria-labelledby="projects-heading"
+              className="animate-fade-in-up"
             >
-              <h2 id="projects-heading" className="text-2xl font-semibold mb-6">
+              <h2
+                id="projects-heading"
+                className="text-sm font-bold tracking-[0.15em] uppercase mb-8 pb-3 border-b border-foreground/10 text-foreground/70"
+              >
                 Academic & Side Projects
               </h2>
               <Suspense fallback={<LoadingFallback />}>
@@ -100,10 +110,11 @@ export default function Portfolio() {
               id="volunteering"
               role="region"
               aria-labelledby="volunteering-heading"
+              className="animate-fade-in-up"
             >
               <h2
                 id="volunteering-heading"
-                className="text-2xl font-semibold mb-6"
+                className="text-sm font-bold tracking-[0.15em] uppercase mb-8 pb-3 border-b border-foreground/10 text-foreground/70"
               >
                 Volunteering & Community Service
               </h2>

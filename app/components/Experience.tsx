@@ -29,7 +29,7 @@ const ExperienceItem = memo(({ experience, isLast }: ExperienceItemProps) => {
               {experience.type}
             </Badge>
           </div>
-          <span className="text-sm text-muted-foreground whitespace-nowrap">
+          <span className="text-sm font-mono text-muted-foreground whitespace-nowrap">
             {experience.period}
           </span>
         </div>
@@ -63,7 +63,7 @@ ExperienceItem.displayName = "ExperienceItem";
 
 function ExperienceBase() {
   return (
-    <Card>
+    <Card className="card-hover border-2">
       <CardContent>
         <div className="grid gap-6">
           {experiences.map((experience, index) => (
