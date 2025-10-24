@@ -10,7 +10,7 @@ import { skillCategories } from "@/data/skills";
 export function Skills() {
   return (
     <div className="space-y-7">
-      {skillCategories.map((category, index) => (
+      {skillCategories.map((category) => (
         <div key={category.category}>
           <div>
             <h3 className="font-semibold text-lg text-foreground mb-4">

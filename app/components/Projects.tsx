@@ -7,7 +7,7 @@ import { projects } from "@/data/projects";
 function ProjectsBase() {
   return (
     <div className="space-y-8">
-      {projects.map((project, index) => (
+      {projects.map((project) => (
         <div key={project.title}>
           <div className="flex flex-col gap-4">
             <div className="flex justify-between items-start gap-4">

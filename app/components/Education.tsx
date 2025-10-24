@@ -3,10 +3,9 @@ import { education } from "@/data/education";
 
 interface EducationItemProps {
   edu: (typeof education)[0];
-  isLast: boolean;
 }
 
-const EducationItem = memo(({ edu, isLast }: EducationItemProps) => {
+const EducationItem = memo(({ edu }: EducationItemProps) => {
   return (
     <div key={edu.title}>
       <div className="flex flex-col gap-4">
@@ -43,12 +42,8 @@ EducationItem.displayName = "EducationItem";
 function EducationBase() {
   return (
     <div className="grid gap-8">
-      {education.map((edu, index) => (
-        <EducationItem
-          key={edu.title}
-          edu={edu}
-          isLast={index === education.length - 1}
-        />
+      {education.map((edu) => (
+        <EducationItem key={edu.title} edu={edu} />
       ))}
     </div>
   );

@@ -5,10 +5,9 @@ import { experiences, Experience as ExperienceType } from "@/data/experience";
 
 interface ExperienceItemProps {
   experience: ExperienceType;
-  isLast: boolean;
 }
 
-const ExperienceItem = memo(({ experience, isLast }: ExperienceItemProps) => {
+const ExperienceItem = memo(({ experience }: ExperienceItemProps) => {
   return (
     <div key={experience.title}>
       <div className="flex flex-col gap-4">
@@ -63,12 +62,8 @@ ExperienceItem.displayName = "ExperienceItem";
 function ExperienceBase() {
   return (
     <div className="grid gap-8">
-      {experiences.map((experience, index) => (
-        <ExperienceItem
-          key={experience.title}
-          experience={experience}
-          isLast={index === experiences.length - 1}
-        />
+      {experiences.map((experience) => (
+        <ExperienceItem key={experience.title} experience={experience} />
       ))}
     </div>
   );
