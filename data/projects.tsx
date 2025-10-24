@@ -19,6 +19,38 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    title: "AI Professional Portrait SAAS",
+    type: "Side Project",
+    date: "2025",
+    description:
+      "A modern AI-powered professional portrait generator built with Next.js 15 and Google Gemini 2.5 Flash Image API. Transforms casual photos into professional headshots in 10 seconds. Features subscription plans and credit-based pricing with Stripe integration.",
+    highlights: [
+      "Built lightning-fast portrait generation (10 seconds) using Google Gemini 2.5 Flash Image API",
+      "Implemented 4 professional styles: Business Formal, Business Casual, Smart Casual, and Casual",
+      "Integrated Stripe for subscription management and credit pack purchases",
+      "Designed responsive UI with drag-and-drop photo upload and before/after slider",
+      "Built authentication and database system with Supabase",
+      "Created freemium model with free trial and subscription tiers ($0.29-$0.55 per portrait)",
+    ],
+    technologies: [
+      "Next.js 15",
+      "Google Gemini 2.5 Flash Image API",
+      "TypeScript",
+      "Supabase",
+      "Stripe",
+      "Tailwind CSS",
+      "Shadcn/ui",
+      "Lucide React",
+    ],
+    links: [
+      {
+        url: "https://ai-professional-portrait.vercel.app/",
+        label: "View Project",
+        icon: <ExternalLinkIcon className="w-4 h-4" />,
+      },
+    ],
+  },
+  {
     title: "Portfolio Studio",
     type: "Side Project",
     date: "2025",

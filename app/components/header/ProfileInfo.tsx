@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { memo } from "react";
-import { TimeDisplay } from "./TimeDisplay";
 
 export interface ProfileInfoProps {
   name: string;
@@ -23,12 +22,9 @@ function ProfileInfoBase({
     <div className={`flex justify-between items-start ${className}`}>
       <div>
         <h1 className="text-4xl font-bold tracking-tight mb-4">{name}</h1>
-        <div className="flex flex-col gap-1 mb-4">
-          <h2 className="text-xl text-muted-foreground">
-            {title}, {location}
-          </h2>
-          <TimeDisplay />
-        </div>
+        <h2 className="text-xl text-muted-foreground mb-4">
+          {title}, {location}
+        </h2>
         <p className="text-muted-foreground max-w-2xl mb-6">{bio}</p>
       </div>
       <Image

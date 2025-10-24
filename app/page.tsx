@@ -22,16 +22,8 @@ const Volunteering = lazy(() =>
 const Education = lazy(() =>
   import("./components/Education").then((mod) => ({ default: mod.Education }))
 );
-const Awards = lazy(() =>
-  import("./components/Awards").then((mod) => ({ default: mod.Awards }))
-);
 const Projects = lazy(() =>
   import("./components/Projects").then((mod) => ({ default: mod.Projects }))
-);
-const Extracurriculars = lazy(() =>
-  import("./components/Extracurriculars").then((mod) => ({
-    default: mod.Extracurriculars,
-  }))
 );
 
 // Loading fallback component
@@ -117,31 +109,6 @@ export default function Portfolio() {
               </h2>
               <Suspense fallback={<LoadingFallback />}>
                 <Volunteering />
-              </Suspense>
-            </article>
-
-            <article id="awards" role="region" aria-labelledby="awards-heading">
-              <h2 id="awards-heading" className="text-2xl font-semibold mb-6">
-                Awards & Nominations
-              </h2>
-              <Suspense fallback={<LoadingFallback />}>
-                <Awards />
-              </Suspense>
-            </article>
-
-            <article
-              id="extracurriculars"
-              role="region"
-              aria-labelledby="extracurriculars-heading"
-            >
-              <h2
-                id="extracurriculars-heading"
-                className="text-2xl font-semibold mb-6"
-              >
-                Extracurricular Activities
-              </h2>
-              <Suspense fallback={<LoadingFallback />}>
-                <Extracurriculars />
               </Suspense>
             </article>
           </div>

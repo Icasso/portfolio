@@ -12,28 +12,6 @@ export interface Experience {
 
 export const experiences: Experience[] = [
   {
-    title: "REDACTED",
-    role: "REDACTED",
-    period: "Nov 2025 - Present",
-    organization: "REDACTED",
-    organizationUrl: "https://www.jpmorganchase.com/",
-    type: "Full-time",
-    description: "REDACTED",
-    technologies: [
-      "Python",
-      "Pandas",
-      "NumPy",
-      "AWS",
-      "Docker",
-      "Kubernetes",
-      "CI/CD",
-      "Quantitative Finance",
-    ],
-    highlights: [
-      "NDA - The information provided is for general informational purposes only and does not constitute professional financial advice. It should not be considered a substitute for consulting with a qualified financial advisor. Always conduct your own research and consider your individual financial situation before making any investment or financial decisions. Past performance is not indicative of future results, and all investments carry risks, including the potential loss of principal. We are not responsible for any financial losses or damages resulting from the use of this information.",
-    ],
-  },
-  {
     title: "Software Engineer II",
     role: "Exchange Platform - Asset and Financial Product - Structured Financial Product",
     period: "Apr 2024 - Oct 2025",
