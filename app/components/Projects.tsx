@@ -17,7 +17,7 @@ function ProjectsBase() {
               <div className="flex flex-col gap-4">
                 <div className="flex justify-between items-start gap-4">
                   <div className="flex flex-col sm:flex-row sm:items-baseline gap-2">
-                    <h3 className="font-semibold text-lg text-primary">
+                    <h3 className="font-semibold text-lg text-foreground">
                       {project.title}
                     </h3>
                     <Badge variant="secondary" className="text-xs">

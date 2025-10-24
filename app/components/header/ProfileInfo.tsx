@@ -24,7 +24,7 @@ function ProfileInfoBase({
       </div>
 
       <div className="flex flex-wrap items-center gap-3">
-        <h2 className="text-xl font-semibold text-primary">{title}</h2>
+        <h2 className="text-base font-semibold text-foreground">{title}</h2>
         <span className="text-muted-foreground">•</span>
         <div className="flex items-center gap-1.5 text-muted-foreground">
           <MapPin className="w-4 h-4" />

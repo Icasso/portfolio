@@ -18,7 +18,7 @@ export function Skills() {
             <div key={category.category}>
               {index > 0 && <Separator className="mb-6" />}
               <div>
-                <h3 className="font-semibold text-lg text-primary mb-4">
+                <h3 className="font-semibold text-base text-foreground mb-4">
                   {category.category}
                 </h3>
                 <TooltipProvider>

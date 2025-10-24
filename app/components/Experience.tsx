@@ -16,7 +16,9 @@ const ExperienceItem = memo(({ experience, isLast }: ExperienceItemProps) => {
       <div className="flex flex-col gap-4">
         <div className="flex justify-between items-start gap-4">
           <div className="flex flex-col sm:flex-row sm:items-baseline gap-2">
-            <h3 className="font-semibold text-primary">{experience.title}</h3>
+            <h3 className="font-semibold text-lg text-foreground">
+              {experience.title}
+            </h3>
             <Link
               href={experience.organizationUrl}
               className="text-sm text-muted-foreground hover:text-primary transition-colors"

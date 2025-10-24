@@ -17,7 +17,9 @@ const VolunteerItem = memo(({ volunteer }: VolunteerItemProps) => {
       <div className="flex flex-col gap-4">
         <div className="flex justify-between items-start gap-4">
           <div className="flex flex-col sm:flex-row sm:items-baseline gap-2">
-            <h3 className="font-semibold text-primary">{volunteer.title}</h3>
+            <h3 className="font-semibold text-lg text-foreground">
+              {volunteer.title}
+            </h3>
             <Link
               href={volunteer.organizationUrl}
               className="text-sm text-muted-foreground hover:text-primary transition-colors"

@@ -14,7 +14,9 @@ const EducationItem = memo(({ edu, isLast }: EducationItemProps) => {
       <div className="flex flex-col gap-4">
         <div className="flex justify-between items-start gap-4">
           <div className="flex flex-col sm:flex-row sm:items-baseline gap-2">
-            <h3 className="font-semibold text-primary">{edu.title}</h3>
+            <h3 className="font-semibold text-lg text-foreground">
+              {edu.title}
+            </h3>
             <span className="text-sm text-muted-foreground">
               {edu.organization}
             </span>
