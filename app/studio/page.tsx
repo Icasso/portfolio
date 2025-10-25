@@ -1,281 +1,344 @@
 "use client";
 
-import { Command } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { CommandMenu } from "../components/CommandMenu";
-import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect, useMemo } from "react";
 import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { StatsCard } from "../components/StatsCard";
-import { AnimatedBadge } from "../components/AnimatedBadge";
-import {
-  FUNNY_LINES_EN,
-  FUNNY_LINES_ZH,
-  TITLE_EN,
-  TITLE_ZH,
-  ANIMATED_BADGES,
-  FEATURES_EN,
-  FEATURES_ZH,
-  PRICING_INFO_EN,
-  PRICING_INFO_ZH,
-} from "./data";
+import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
-function useRotatingText<T>(
-  textsEN: readonly T[],
-  textsZH: readonly T[],
-  interval: number
-): T {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isEnglish, setIsEnglish] = useState(true);
+// Animation variants
+const fadeInUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0 },
+};
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setIsEnglish((prev) => !prev);
-      if (!isEnglish) {
-        setCurrentIndex((prev) => (prev + 1) % textsEN.length);
-      }
-    }, interval);
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
 
-    return () => clearInterval(timer);
-  }, [textsEN.length, interval, isEnglish]);
+const fadeIn = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
+};
 
-  return useMemo(
-    () => (isEnglish ? textsEN[currentIndex] : textsZH[currentIndex]),
-    [textsEN, textsZH, currentIndex, isEnglish]
-  );
-}
-
-function useCountUp(end: number, duration: number = 2): number {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    let startTime: number;
-    let animationFrame: number;
-
-    const animate = (currentTime: number): void => {
-      if (!startTime) startTime = currentTime;
-      const progress = Math.min(
-        (currentTime - startTime) / (duration * 1000),
-        1
-      );
-      setCount(Math.floor(progress * end));
-
-      if (progress < 1) {
-        animationFrame = requestAnimationFrame(animate);
-      }
-    };
-
-    animationFrame = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animationFrame);
-  }, [end, duration]);
-
-  return count;
-}
+const projects = [
+  {
+    id: 1,
+    title: "AI Professional Portrait",
+    subtitle: "Professional headshots powered by AI",
+    description:
+      "Transform casual photos into LinkedIn-ready professional portraits in just 10 seconds. Features 4 professional styles, instant generation, and pricing from $0.29 per portrait.",
+    image: "/projects/ai-portrait-hero.png",
+    tags: ["Next.js 15", "Gemini 2.5 Flash", "Supabase", "Stripe"],
+    url: "https://ai-professional-portrait.vercel.app/",
+    year: "2025",
+  },
+];
 
 export default function StudioPortfolio() {
-  const currentLine = useRotatingText(FUNNY_LINES_EN, FUNNY_LINES_ZH, 3500);
-  const currentTitle = useRotatingText(TITLE_EN, TITLE_ZH, 10000);
-  const visits = 200;
-
-  const daysLived = useMemo(
-    () =>
-      Math.floor((Date.now() - new Date("2000-03-21").getTime()) / 86400000),
-    []
-  );
-  const animatedCount = useCountUp(daysLived);
-  const animatedVisits = useCountUp(visits);
-
-  useEffect(() => {
-    const setVH = () => {
-      const vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty("--vh", `${vh}px`);
-    };
-
-    setVH();
-    window.addEventListener("resize", setVH);
-    return () => window.removeEventListener("resize", setVH);
-  }, []);
+  const scrollToWork = () => {
+    document.getElementById("work")?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-background via-background to-muted">
-      <main className="flex-1 flex flex-col">
-        {/* Hero Section - Full height */}
-        <section className="min-h-screen min-h-[calc(100vh_-_env(safe-area-inset-bottom))] flex items-center justify-center">
-          <div className="container max-w-4xl px-4 flex flex-col items-center justify-center">
-            <div className="text-center w-full">
-              <h1
-                className="text-4xl sm:text-5xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/50 mb-8"
-                aria-label="Need a Portfolio?"
+    <div className="min-h-screen flex flex-col bg-background">
+      {/* Hero Section - Full Height */}
+      <section className="min-h-screen flex items-center justify-center px-6 relative overflow-hidden">
+        <div className="container max-w-4xl mx-auto text-center space-y-16">
+          <motion.div
+            className="space-y-6 max-w-5xl mx-auto"
+            initial="hidden"
+            animate="visible"
+            variants={staggerContainer}
+          >
+            <motion.h1
+              className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-tight"
+              variants={fadeInUp}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            >
+              Let&apos;s build something
+              <br />
+              remarkable.
+            </motion.h1>
+            <motion.p
+              className="text-xl sm:text-2xl text-muted-foreground font-light max-w-2xl mx-auto"
+              variants={fadeInUp}
+              transition={{
+                duration: 0.8,
+                ease: [0.22, 1, 0.36, 1],
+                delay: 0.1,
+              }}
+            >
+              Crafting digital experiences that make an impact
+            </motion.p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-block"
+          >
+            <Button size="lg" className="min-w-[180px]" asChild>
+              <a
+                href="https://www.instagram.com/isaactsui3000"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <div className="max-w-[90%] mx-auto leading-tight">
-                  {currentTitle}
-                </div>
-              </h1>
+                Let&apos;s Connect
+              </a>
+            </Button>
+          </motion.div>
 
-              <div
-                className="h-[4rem] flex items-center justify-center px-4"
-                role="region"
-                aria-label="Rotating text"
-              >
-                <AnimatePresence mode="wait">
-                  <motion.p
-                    key={currentLine}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.5 }}
-                    className="text-lg sm:text-2xl text-muted-foreground text-center"
-                  >
-                    {currentLine}
-                  </motion.p>
-                </AnimatePresence>
-              </div>
+          {/* Brainrot Badges */}
+          <motion.div
+            className="flex flex-wrap justify-center gap-2 px-4 max-w-4xl mx-auto"
+            initial="hidden"
+            animate="visible"
+            variants={staggerContainer}
+          >
+            <motion.div variants={fadeIn} transition={{ duration: 0.4 }}>
+              <Badge className="bg-red-600 text-white border-transparent">
+                Backed by Y Combinator*
+              </Badge>
+            </motion.div>
+            <motion.div variants={fadeIn} transition={{ duration: 0.4 }}>
+              <Badge variant="outline">Series Z Funded 🚀</Badge>
+            </motion.div>
+            <motion.div variants={fadeIn} transition={{ duration: 0.4 }}>
+              <Badge variant="secondary">Powered by 🧠 rot</Badge>
+            </motion.div>
+            <motion.div variants={fadeIn} transition={{ duration: 0.4 }}>
+              <Badge variant="default">香港製造 🇭🇰</Badge>
+            </motion.div>
+            <motion.div variants={fadeIn} transition={{ duration: 0.4 }}>
+              <Badge variant="outline">*** in my dreams</Badge>
+            </motion.div>
+            <motion.div variants={fadeIn} transition={{ duration: 0.4 }}>
+              <Badge className="bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 border-transparent">
+                獨角獸級數 🦄
+              </Badge>
+            </motion.div>
+            <motion.div variants={fadeIn} transition={{ duration: 0.4 }}>
+              <Badge variant="outline" className="border-dashed border-2">
+                Bootstrapped AF
+              </Badge>
+            </motion.div>
+            <motion.div variants={fadeIn} transition={{ duration: 0.4 }}>
+              <Badge variant="secondary">Running on Copium</Badge>
+            </motion.div>
+            <motion.div variants={fadeIn} transition={{ duration: 0.4 }}>
+              <Badge className="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 border-transparent">
+                Profitable (cap)
+              </Badge>
+            </motion.div>
+            <motion.div variants={fadeIn} transition={{ duration: 0.4 }}>
+              <Badge className="bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border-transparent">
+                Certified HBU dev
+              </Badge>
+            </motion.div>
+            <motion.div variants={fadeIn} transition={{ duration: 0.4 }}>
+              <Badge variant="secondary">Powered by ChatGPT 6.9</Badge>
+            </motion.div>
+            <motion.div variants={fadeIn} transition={{ duration: 0.4 }}>
+              <Badge variant="outline">Web5 Ready™</Badge>
+            </motion.div>
+            <motion.div variants={fadeIn} transition={{ duration: 0.4 }}>
+              <Badge className="bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 border-transparent">
+                Built with Stack Overflow
+              </Badge>
+            </motion.div>
+            <motion.div variants={fadeIn} transition={{ duration: 0.4 }}>
+              <Badge variant="outline">Trust me bro 🤝</Badge>
+            </motion.div>
+            <motion.div variants={fadeIn} transition={{ duration: 0.4 }}>
+              <Badge variant="secondary">唔識寫code都得 👑</Badge>
+            </motion.div>
+            <motion.div variants={fadeIn} transition={{ duration: 0.4 }}>
+              <Badge variant="secondary">AI寫晒 🧠</Badge>
+            </motion.div>
+            <motion.div variants={fadeIn} transition={{ duration: 0.4 }}>
+              <Badge className="bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 border-transparent">
+                冇bug先奇怪 🐛
+              </Badge>
+            </motion.div>
+            <motion.div variants={fadeIn} transition={{ duration: 0.4 }}>
+              <Badge variant="outline">Copy完唔改都得 📝</Badge>
+            </motion.div>
+          </motion.div>
 
-              <div className="flex justify-center gap-2 sm:gap-8 mt-8">
-                <StatsCard
-                  value={`${animatedVisits}+`}
-                  label="total visits"
-                  ariaLabel={`${animatedVisits} total visits`}
-                />
-                <StatsCard
-                  value={`${animatedCount}+`}
-                  label="days living on earth"
-                  gradient="from-green-400 to-blue-500"
-                  ariaLabel={`${animatedCount} days living on earth`}
-                />
-                <StatsCard
-                  value="∞"
-                  label="potential"
-                  gradient="from-green-400 to-blue-500"
-                  ariaLabel="Infinite potential"
-                />
-              </div>
+          <motion.button
+            onClick={scrollToWork}
+            className="group inline-flex flex-col items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors pt-8"
+            aria-label="Scroll to view work"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+          >
+            <span>View Work</span>
+            <ArrowDown className="w-5 h-5 animate-bounce" />
+          </motion.button>
+        </div>
+      </section>
 
-              <div className="mt-8 flex items-center justify-center gap-1.5 sm:gap-2 flex-wrap px-2 sm:px-4">
-                {ANIMATED_BADGES.map((badge) => (
-                  <AnimatedBadge
-                    key={badge.text}
-                    badge={badge}
-                    totalBadges={ANIMATED_BADGES.length}
+      {/* Featured Work Section */}
+      <section id="work" className="py-24 sm:py-32 px-6">
+        <div className="container max-w-6xl mx-auto space-y-32">
+          {projects.map((project, index) => (
+            <motion.div
+              key={project.id}
+              className="space-y-12"
+              initial={{ opacity: 0, y: 60 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            >
+              {/* Project Header */}
+              <div className="space-y-6 max-w-3xl">
+                <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                  <span className="font-mono">{project.year}</span>
+                  <motion.div
+                    className="h-px flex-1 bg-border"
+                    initial={{ scaleX: 0 }}
+                    whileInView={{ scaleX: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
                   />
-                ))}
+                </div>
+                <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">
+                  {project.title}
+                </h2>
+                <p className="text-xl text-muted-foreground font-light">
+                  {project.subtitle}
+                </p>
               </div>
-            </div>
-          </div>
-        </section>
 
-        {/* Features Section - Below the fold */}
-        <section
-          id="pricing-section"
-          className="min-h-[calc(100vh_-_env(safe-area-inset-bottom))] flex items-center justify-center py-8 sm:py-16 md:py-24"
-        >
-          <div className="container max-w-4xl px-4">
-            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12">
-              Personalized / 度身訂造
-            </h2>
-            <Tabs defaultValue="features" className="w-full max-w-2xl mx-auto">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="features" className="text-sm sm:text-base">
-                  Features
-                </TabsTrigger>
-                <TabsTrigger value="功能" className="text-sm sm:text-base">
-                  功能
-                </TabsTrigger>
-              </TabsList>
-              <TabsContent value="features" className="mt-4 sm:mt-6 space-y-4">
-                <div className="rounded-lg border p-4 sm:p-6">
-                  <div className="space-y-4 sm:space-y-6">
-                    <ul className="space-y-3 sm:space-y-4 text-sm sm:text-base">
-                      {FEATURES_EN.map((feature, index) => (
-                        <li key={index} className="flex items-center gap-2">
-                          <span className="text-green-500">✓</span>
-                          <span>{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="pt-4 border-t">
-                      <p className="text-sm text-muted-foreground/80 text-center">
-                        {PRICING_INFO_EN}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </TabsContent>
-              <TabsContent value="功能" className="mt-6 space-y-4">
-                <div className="rounded-lg border p-6">
-                  <div className="space-y-6">
-                    <ul className="space-y-4">
-                      {FEATURES_ZH.map((feature, index) => (
-                        <li key={index} className="flex items-center gap-2">
-                          <span className="text-green-500">✓</span>
-                          <span>{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="pt-4 border-t">
-                      <p className="text-sm text-muted-foreground/80 text-center">
-                        {PRICING_INFO_ZH}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </TabsContent>
-            </Tabs>
-            <div className="flex items-center justify-center mt-8">
-              <Button asChild size="sm">
-                <a
-                  href="https://www.instagram.com/isaactsui3000"
-                  target="_blank"
-                  rel="noopener noreferrer"
+              {/* Project Image */}
+              <Link
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block mb-20"
+              >
+                <motion.div
+                  className="group relative overflow-hidden rounded-lg border bg-muted cursor-pointer"
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.3 }}
                 >
-                  Contact me / 聯絡我
-                </a>
-              </Button>
-            </div>
-          </div>
-        </section>
-      </main>
+                  <div className="aspect-[16/9] relative">
+                    {project.image ? (
+                      <>
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          className="object-cover transition-transform duration-700 group-hover:scale-105"
+                          priority={index === 0}
+                        />
+                        <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors duration-300" />
+                      </>
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="text-6xl opacity-50">🎨</div>
+                      </div>
+                    )}
+                  </div>
+                </motion.div>
+              </Link>
 
-      <footer className="border-t bg-background/50 backdrop-blur-sm py-4 sm:py-6">
-        <div className="container mx-auto flex flex-col items-center justify-center gap-2 sm:gap-4 text-center px-4">
-          <div className="flex items-center gap-2 text-[10px] sm:text-sm text-muted-foreground">
-            <span>Press</span>
-            <kbd className="pointer-events-none inline-flex h-4 sm:h-5 select-none items-center gap-1 rounded border bg-muted/50 px-1 sm:px-1.5 font-mono text-[8px] sm:text-[10px] font-medium text-muted-foreground opacity-100 hidden sm:inline-flex">
-              <Command
-                className="h-2.5 w-2.5 sm:h-3 sm:w-3"
-                aria-hidden="true"
-              />
-              <span>K</span>
-            </kbd>
-            <span className="hidden sm:inline-block">
-              for brain rot content
-            </span>
-          </div>
-          <div className="text-xs sm:text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Tsui Hoi Ming, Isaac. All rights
-            reserved.
+              {/* Project Details */}
+              <motion.div
+                className="grid md:grid-cols-2 gap-12 max-w-4xl"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <div className="space-y-4">
+                  <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+                    About
+                  </h3>
+                  <p className="text-lg leading-relaxed text-muted-foreground">
+                    {project.description}
+                  </p>
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Button asChild className="mt-6">
+                      <a
+                        href={project.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Visit Site
+                      </a>
+                    </Button>
+                  </motion.div>
+                </div>
+
+                <div className="space-y-4">
+                  <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+                    Technology
+                  </h3>
+                  <ul className="space-y-3">
+                    {project.tags.map((tag, tagIndex) => (
+                      <motion.li
+                        key={tag}
+                        className="text-lg text-muted-foreground flex items-center gap-3"
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.4, delay: tagIndex * 0.1 }}
+                      >
+                        <div className="w-1 h-1 rounded-full bg-foreground" />
+                        {tag}
+                      </motion.li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t py-12 px-6">
+        <div className="container max-w-6xl mx-auto">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="text-sm text-muted-foreground">
+              © {new Date().getFullYear()} Isaac Tsui
+            </div>
+            <nav className="flex items-center gap-6 text-sm">
+              <Link
+                href="/"
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Portfolio
+              </Link>
+              <Link
+                href="/studio"
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Studio
+              </Link>
+            </nav>
           </div>
         </div>
       </footer>
 
-      <Button
-        size="icon"
-        variant="outline"
-        className="fixed right-4 bottom-4 sm:hidden h-10 w-10 rounded-full shadow-lg bg-background/95 backdrop-blur-sm"
-        onClick={() => {
-          const event = new KeyboardEvent("keydown", {
-            key: "k",
-            metaKey: true,
-          });
-          document.dispatchEvent(event);
-        }}
-      >
-        <Command className="h-4 w-4" />
-      </Button>
-
       <SpeedInsights />
-      <CommandMenu />
     </div>
   );
 }

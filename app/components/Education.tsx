@@ -10,7 +10,7 @@ const EducationItem = memo(({ edu }: EducationItemProps) => {
     <div key={edu.title}>
       <div className="flex flex-col gap-4">
         <div className="flex justify-between items-start gap-4">
-          <div className="flex flex-col sm:flex-row sm:items-baseline gap-2">
+          <div className="flex flex-col items-start sm:flex-row sm:items-baseline gap-2">
             <h3 className="font-semibold text-xl text-foreground">
               {edu.title}
             </h3>

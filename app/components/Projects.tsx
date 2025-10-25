@@ -11,11 +11,11 @@ function ProjectsBase() {
         <div key={project.title}>
           <div className="flex flex-col gap-4">
             <div className="flex justify-between items-start gap-4">
-              <div className="flex flex-col sm:flex-row sm:items-baseline gap-2">
+              <div className="flex flex-col items-start sm:flex-row sm:items-baseline gap-2">
                 <h3 className="font-semibold text-xl text-foreground">
                   {project.title}
                 </h3>
-                <Badge variant="secondary" className="text-xs">
+                <Badge variant="secondary" className="text-xs pl-0">
                   {project.type}
                 </Badge>
               </div>

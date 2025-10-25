@@ -1,16 +1,18 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "./ThemeToggle";
+import Link from "next/link";
 
-const navItems = [
+const navItems: Array<{ label: string; href: string; external?: boolean }> = [
   { label: "Work Experience", href: "#experience" },
   { label: "Education", href: "#education" },
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
   { label: "Volunteering", href: "#volunteering" },
+  { label: "Studio", href: "/studio", external: true },
 ];
 
 export function Navigation() {
@@ -29,9 +31,12 @@ export function Navigation() {
       { threshold: 0.3, rootMargin: "-100px 0px -60% 0px" }
     );
 
+    // Only observe internal section links (hash links)
     navItems.forEach((item) => {
-      const element = document.querySelector(item.href);
-      if (element) observer.observe(element);
+      if (!item.external) {
+        const element = document.querySelector(item.href);
+        if (element) observer.observe(element);
+      }
     });
 
     return () => observer.disconnect();
@@ -62,20 +67,31 @@ export function Navigation() {
         <div className="flex h-16 items-center justify-between">
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-6 flex-1">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={(e) => handleClick(e, item.href)}
-                className={`text-sm font-medium transition-colors hover:text-foreground/80 ${
-                  activeSection === item.href.slice(1)
-                    ? "text-foreground"
-                    : "text-foreground/60"
-                }`}
-              >
-                {item.label}
-              </a>
-            ))}
+            {navItems.map((item) =>
+              item.external ? (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="inline-flex items-center gap-1.5 text-sm font-medium px-3 py-1.5 rounded-md border border-foreground/20 text-foreground/80 hover:text-foreground hover:border-foreground/40 transition-all"
+                >
+                  {item.label}
+                  <ExternalLink className="w-3 h-3" />
+                </Link>
+              ) : (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={(e) => handleClick(e, item.href)}
+                  className={`text-sm font-medium transition-colors hover:text-foreground/80 ${
+                    activeSection === item.href.slice(1)
+                      ? "text-foreground"
+                      : "text-foreground/60"
+                  }`}
+                >
+                  {item.label}
+                </a>
+              )
+            )}
           </div>
 
           {/* Theme Toggle - Desktop */}
@@ -109,20 +125,32 @@ export function Navigation() {
       {isOpen && (
         <div className="md:hidden border-t border-foreground">
           <div className="container max-w-4xl mx-auto px-4 py-4 space-y-3">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={(e) => handleClick(e, item.href)}
-                className={`block py-2 text-base font-medium transition-colors hover:text-foreground/80 ${
-                  activeSection === item.href.slice(1)
-                    ? "text-foreground"
-                    : "text-foreground/60"
-                }`}
-              >
-                {item.label}
-              </a>
-            ))}
+            {navItems.map((item) =>
+              item.external ? (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setIsOpen(false)}
+                  className="flex items-center justify-between py-2 px-3 text-base font-medium text-foreground/80 border border-foreground/20 rounded-md transition-colors hover:text-foreground hover:border-foreground/40"
+                >
+                  {item.label}
+                  <ExternalLink className="w-4 h-4" />
+                </Link>
+              ) : (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={(e) => handleClick(e, item.href)}
+                  className={`block py-2 text-base font-medium transition-colors hover:text-foreground/80 ${
+                    activeSection === item.href.slice(1)
+                      ? "text-foreground"
+                      : "text-foreground/60"
+                  }`}
+                >
+                  {item.label}
+                </a>
+              )
+            )}
           </div>
         </div>
       )}
