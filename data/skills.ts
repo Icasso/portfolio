@@ -17,7 +17,10 @@ export const skillCategories: SkillCategory[] = [
         details:
           "Backend development, Spring Framework, Enterprise applications",
       },
-      { name: "Python", details: "Data processing, APIs, Automation scripts" },
+      {
+        name: "Python",
+        details: "Data processing, APIs, Pandas, Numpy, Automation scripts",
+      },
       { name: "C#", details: ".NET Core, ASP.NET, Desktop applications" },
       {
         name: ".NET",
@@ -48,8 +51,15 @@ export const skillCategories: SkillCategory[] = [
       { name: "Apache Kafka", details: "Distributed streaming platform" },
       { name: "Spring Boot", details: "Java framework" },
       { name: "Django", details: "Python web framework" },
-      { name: "Docker", details: "Containerization" },
-      { name: "Kubernetes", details: "Container orchestration" },
+      {
+        name: "Docker",
+        details: "Containerization and application deployment",
+      },
+      {
+        name: "Kubernetes",
+        details: "Container orchestration and application deployment",
+      },
+      { name: "RESTful API", details: "API design and development" },
     ],
   },
   {
@@ -58,6 +68,7 @@ export const skillCategories: SkillCategory[] = [
       { name: "Git", details: "Version control" },
       { name: "GitLab", details: "DevOps platform" },
       { name: "JIRA", details: "Project management" },
+      { name: "AWS", details: "Cloud computing services" },
       { name: "Heroku", details: "Cloud platform" },
       { name: "AliCloud", details: "Cloud computing platform" },
       { name: "Azure", details: "Cloud services" },
