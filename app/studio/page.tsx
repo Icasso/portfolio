@@ -51,16 +51,16 @@ export default function StudioPortfolio() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       {/* Hero Section - Full Height */}
-      <section className="min-h-screen flex items-center justify-center px-6 relative overflow-hidden">
-        <div className="container max-w-4xl mx-auto text-center space-y-16">
+      <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 relative overflow-hidden">
+        <div className="container max-w-4xl mx-auto text-center space-y-10 sm:space-y-16">
           <motion.div
-            className="space-y-6 max-w-5xl mx-auto"
+            className="space-y-4 sm:space-y-6 max-w-5xl mx-auto"
             initial="hidden"
             animate="visible"
             variants={staggerContainer}
           >
             <motion.h1
-              className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-tight"
+              className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-tight"
               variants={fadeInUp}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
@@ -69,7 +69,7 @@ export default function StudioPortfolio() {
               remarkable.
             </motion.h1>
             <motion.p
-              className="text-xl sm:text-2xl text-muted-foreground font-light max-w-2xl mx-auto"
+              className="text-lg sm:text-2xl text-muted-foreground font-light max-w-2xl mx-auto px-4"
               variants={fadeInUp}
               transition={{
                 duration: 0.8,
@@ -89,7 +89,11 @@ export default function StudioPortfolio() {
             whileTap={{ scale: 0.95 }}
             className="inline-block"
           >
-            <Button size="lg" className="min-w-[180px]" asChild>
+            <Button
+              size="lg"
+              className="min-w-[160px] sm:min-w-[180px] px-6 sm:px-8"
+              asChild
+            >
               <a
                 href="https://www.instagram.com/isaactsui3000"
                 target="_blank"
@@ -102,7 +106,7 @@ export default function StudioPortfolio() {
 
           {/* Brainrot Badges */}
           <motion.div
-            className="flex flex-wrap justify-center gap-2 px-4 max-w-4xl mx-auto"
+            className="flex flex-wrap justify-center gap-2 sm:gap-3 px-2 sm:px-4 max-w-4xl mx-auto"
             initial="hidden"
             animate="visible"
             variants={staggerContainer}
@@ -192,19 +196,19 @@ export default function StudioPortfolio() {
       </section>
 
       {/* Featured Work Section */}
-      <section id="work" className="py-24 sm:py-32 px-6">
-        <div className="container max-w-6xl mx-auto space-y-32">
+      <section id="work" className="py-16 sm:py-24 md:py-32 px-4 sm:px-6">
+        <div className="container max-w-6xl mx-auto space-y-20 sm:space-y-32">
           {projects.map((project, index) => (
             <motion.div
               key={project.id}
-              className="space-y-12"
+              className="space-y-8 sm:space-y-12"
               initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
               {/* Project Header */}
-              <div className="space-y-6 max-w-3xl">
+              <div className="space-y-4 sm:space-y-6 max-w-3xl">
                 <div className="flex items-center gap-4 text-sm text-muted-foreground">
                   <span className="font-mono">{project.year}</span>
                   <motion.div
@@ -215,10 +219,10 @@ export default function StudioPortfolio() {
                     transition={{ duration: 0.8, delay: 0.2 }}
                   />
                 </div>
-                <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">
+                <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight">
                   {project.title}
                 </h2>
-                <p className="text-xl text-muted-foreground font-light">
+                <p className="text-lg sm:text-xl text-muted-foreground font-light">
                   {project.subtitle}
                 </p>
               </div>
@@ -228,7 +232,7 @@ export default function StudioPortfolio() {
                 href={project.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block mb-20"
+                className="block mb-12 sm:mb-20"
               >
                 <motion.div
                   className="group relative overflow-hidden rounded-lg border bg-muted cursor-pointer"
@@ -258,7 +262,7 @@ export default function StudioPortfolio() {
 
               {/* Project Details */}
               <motion.div
-                className="grid md:grid-cols-2 gap-12 max-w-4xl"
+                className="grid md:grid-cols-2 gap-8 sm:gap-12 max-w-4xl"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -268,7 +272,7 @@ export default function StudioPortfolio() {
                   <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
                     About
                   </h3>
-                  <p className="text-lg leading-relaxed text-muted-foreground">
+                  <p className="text-base sm:text-lg leading-relaxed text-muted-foreground">
                     {project.description}
                   </p>
                   <motion.div
@@ -295,7 +299,7 @@ export default function StudioPortfolio() {
                     {project.tags.map((tag, tagIndex) => (
                       <motion.li
                         key={tag}
-                        className="text-lg text-muted-foreground flex items-center gap-3"
+                        className="text-base sm:text-lg text-muted-foreground flex items-center gap-3"
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
