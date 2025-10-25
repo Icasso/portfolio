@@ -30,22 +30,8 @@ const Projects = lazy(() =>
   import("./components/Projects").then((mod) => ({ default: mod.Projects }))
 );
 
-// Loading fallback component with better skeleton
-const LoadingFallback = () => (
-  <div className="animate-pulse space-y-4">
-    <div className="h-6 bg-foreground rounded w-3/4"></div>
-    <div className="h-4 bg-foreground rounded w-1/2"></div>
-    <div className="space-y-2">
-      <div className="h-4 bg-foreground rounded"></div>
-      <div className="h-4 bg-foreground rounded w-5/6"></div>
-    </div>
-    <div className="flex gap-2">
-      <div className="h-6 w-16 bg-foreground rounded-full"></div>
-      <div className="h-6 w-16 bg-foreground rounded-full"></div>
-      <div className="h-6 w-16 bg-foreground rounded-full"></div>
-    </div>
-  </div>
-);
+// Loading fallback - minimal to avoid jarring animation
+const LoadingFallback = () => <div className="min-h-[200px]" />;
 
 export default function Portfolio() {
   return (
