@@ -38,7 +38,7 @@ export const experiences: Experience[] = [
   {
     title: "Software Engineer",
     role: "Exchange Platform - Asset and Financial Product - Structured Financial Product",
-    period: "Apr 2022 - Apr 2024",
+    period: "Apr 2022 - Mar 2024",
     organization: "OKX",
     organizationUrl: "https://www.okx.com",
     type: "Full-time",
