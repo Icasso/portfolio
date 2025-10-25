@@ -197,6 +197,32 @@
   }
 }
 
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 0.08;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.2;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes pulse-badge {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.05) rotate(-5deg);
+  }
+  50% {
+    transform: scale(1.15) rotate(0deg);
+  }
+  75% {
+    transform: scale(1.05) rotate(5deg);
+  }
+}
+
 /* Print styles for resume printing */
 @media print {
   body {

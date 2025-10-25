@@ -95,6 +95,16 @@ module.exports = {
           "0%, 100%": { backgroundPosition: "0% 50%" },
           "50%": { backgroundPosition: "100% 50%" },
         },
+        "pulse-subtle": {
+          "0%, 100%": { opacity: 0.08, transform: "scale(1)" },
+          "50%": { opacity: 0.2, transform: "scale(1.08)" },
+        },
+        "pulse-badge": {
+          "0%, 100%": { transform: "scale(1) rotate(0deg)" },
+          "25%": { transform: "scale(1.05) rotate(-5deg)" },
+          "50%": { transform: "scale(1.15) rotate(0deg)" },
+          "75%": { transform: "scale(1.05) rotate(5deg)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -102,6 +112,8 @@ module.exports = {
         "fade-in-up": "fade-in-up 0.5s ease-out",
         "pulse-glow": "pulse-glow 2s ease-in-out infinite",
         "gradient-shift": "gradient-shift 8s ease infinite",
+        "pulse-subtle": "pulse-subtle 3s ease-in-out infinite",
+        "pulse-badge": "pulse-badge 2s ease-in-out infinite",
       },
       fontFamily: {
         mono: ["var(--font-mono)", "JetBrains Mono", "monospace"],
