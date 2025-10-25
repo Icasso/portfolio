@@ -41,6 +41,7 @@ export function CompanyShowcase() {
               width={120}
               height={40}
               className="object-contain h-10 w-auto"
+              loading="eager"
             />
           </a>
         ))}

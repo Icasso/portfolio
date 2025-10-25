@@ -13,18 +13,14 @@ import { SectionHeader } from "./components/SectionHeader";
 import { ScrollProgress } from "./components/ScrollProgress";
 import { CompanyShowcase } from "./components/CompanyShowcase";
 import { EducationShowcase } from "./components/EducationShowcase";
+import { Experience } from "./components/Experience";
+import { Education } from "./components/Education";
 
-// Lazy load below-the-fold components
-const Experience = lazy(() =>
-  import("./components/Experience").then((mod) => ({ default: mod.Experience }))
-);
+// Lazy load only below-the-fold components for better performance
 const Volunteering = lazy(() =>
   import("./components/Volunteering").then((mod) => ({
     default: mod.Volunteering,
   }))
-);
-const Education = lazy(() =>
-  import("./components/Education").then((mod) => ({ default: mod.Education }))
 );
 const Projects = lazy(() =>
   import("./components/Projects").then((mod) => ({ default: mod.Projects }))
@@ -53,9 +49,7 @@ export default function Portfolio() {
                 <SectionHeader id="experience-heading">
                   Work Experience
                 </SectionHeader>
-                <Suspense fallback={<LoadingFallback />}>
-                  <Experience />
-                </Suspense>
+                <Experience />
                 <CompanyShowcase />
               </article>
 
@@ -66,9 +60,7 @@ export default function Portfolio() {
                 className="animate-fade-in-up"
               >
                 <SectionHeader id="education-heading">Education</SectionHeader>
-                <Suspense fallback={<LoadingFallback />}>
-                  <Education />
-                </Suspense>
+                <Education />
                 <EducationShowcase />
               </article>
 
