@@ -1,19 +1,19 @@
-import { memo } from "react";
-
 interface SectionHeaderProps {
   id: string;
+  index?: string;
   children: React.ReactNode;
 }
 
-function SectionHeaderBase({ id, children }: SectionHeaderProps) {
+export function SectionHeader({ id, index, children }: SectionHeaderProps) {
   return (
-    <h2
-      id={id}
-      className="text-base font-bold tracking-[0.15em] uppercase mb-8 pb-3 border-b border-foreground text-foreground"
-    >
-      {children}
-    </h2>
+    <div className="mb-10">
+      {index ? <p className="eyebrow text-accent mb-3">{index}</p> : null}
+      <h2
+        id={id}
+        className="display text-3xl sm:text-4xl md:text-[2.75rem] leading-[1.1] text-balance pb-4 border-b border-foreground"
+      >
+        {children}
+      </h2>
+    </div>
   );
 }
-
-export const SectionHeader = memo(SectionHeaderBase);

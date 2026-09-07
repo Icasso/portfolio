@@ -1,33 +1,12 @@
 "use client";
 
 import { ArrowDown } from "lucide-react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
-
-// Animation variants
-const fadeInUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0 },
-};
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const fadeIn = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1 },
-};
+import { Footer } from "../components/Footer";
+import { ThemeToggle } from "../components/ThemeToggle";
 
 const projects = [
   {
@@ -43,6 +22,27 @@ const projects = [
   },
 ];
 
+const jokeBadges = [
+  { label: "Backed by Y Combinator*", variant: "accent" as const },
+  { label: "Series Z Funded", variant: "outline" as const },
+  { label: "Powered by brainrot", variant: "secondary" as const },
+  { label: "香港製造", variant: "default" as const },
+  { label: "*** in my dreams", variant: "outline" as const },
+  { label: "獨角獸級數", variant: "secondary" as const },
+  { label: "Bootstrapped AF", variant: "outline" as const },
+  { label: "Running on Copium", variant: "secondary" as const },
+  { label: "Profitable (cap)", variant: "outline" as const },
+  { label: "Certified HBU dev", variant: "default" as const },
+  { label: "Powered by ChatGPT 6.9", variant: "secondary" as const },
+  { label: "Web5 Ready™", variant: "outline" as const },
+  { label: "Built with Stack Overflow", variant: "outline" as const },
+  { label: "Trust me bro", variant: "secondary" as const },
+  { label: "唔識寫code都得", variant: "default" as const },
+  { label: "AI寫晒", variant: "secondary" as const },
+  { label: "冇bug先奇怪", variant: "accent" as const },
+  { label: "Copy完唔改都得", variant: "outline" as const },
+];
+
 export default function StudioPortfolio() {
   const scrollToWork = () => {
     document.getElementById("work")?.scrollIntoView({ behavior: "smooth" });
@@ -50,299 +50,173 @@ export default function StudioPortfolio() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      {/* Hero Section - Full Height */}
-      <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 relative overflow-hidden">
-        <div className="container max-w-4xl mx-auto text-center space-y-10 sm:space-y-16">
-          <motion.div
-            className="space-y-4 sm:space-y-6 max-w-5xl mx-auto"
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
+      <header className="no-print sticky top-0 z-40 border-b border-foreground bg-background/95 backdrop-blur-sm">
+        <div className="editorial-container flex h-14 items-center justify-between">
+          <Link
+            href="/studio"
+            className="font-mono text-[11px] uppercase tracking-[0.2em] text-foreground"
           >
-            <motion.h1
-              className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-tight"
-              variants={fadeInUp}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            Studio
+          </Link>
+          <div className="flex items-center gap-4">
+            <Link
+              href="/"
+              className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground hover:text-accent transition-colors"
             >
-              Let&apos;s build something
-              <br />
-              remarkable.
-            </motion.h1>
-            <motion.p
-              className="text-lg sm:text-2xl text-muted-foreground font-light max-w-2xl mx-auto px-4"
-              variants={fadeInUp}
-              transition={{
-                duration: 0.8,
-                ease: [0.22, 1, 0.36, 1],
-                delay: 0.1,
-              }}
-            >
-              Crafting digital experiences that make an impact
-            </motion.p>
-          </motion.div>
+              Portfolio ↗
+            </Link>
+            <ThemeToggle />
+          </div>
+        </div>
+      </header>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-block"
-          >
-            <Button
-              size="lg"
-              className="min-w-[160px] sm:min-w-[180px] px-6 sm:px-8"
-              asChild
-            >
-              <a
-                href="https://www.instagram.com/isaactsui3000"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Let&apos;s Connect
-              </a>
-            </Button>
-          </motion.div>
+      <section className="min-h-[85vh] flex items-center px-4 sm:px-6 py-20 relative">
+        <div className="editorial-container w-full">
+          <div className="grid gap-12 lg:grid-cols-[1.3fr_0.7fr] lg:items-end">
+            <div className="space-y-8 animate-fade-in-up">
+              <p className="eyebrow text-accent">
+                Portfolio Studio · Experimental
+              </p>
+              <h1 className="display text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.92] text-balance">
+                Let&apos;s build something remarkable.
+              </h1>
+              <p className="text-lg sm:text-xl text-muted-foreground max-w-xl leading-relaxed">
+                A louder corner of the site — product experiments, visual
+                systems, and bilingual jokes that somehow shipped.
+              </p>
+              <div className="flex flex-wrap items-center gap-4">
+                <Button size="lg" asChild>
+                  <a
+                    href="https://www.instagram.com/isaactsui3000"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Let&apos;s Connect
+                  </a>
+                </Button>
+                <button
+                  onClick={scrollToWork}
+                  className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  View Work
+                  <ArrowDown className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            </div>
 
-          {/* Brainrot Badges */}
-          <motion.div
-            className="flex flex-wrap justify-center gap-2 sm:gap-3 px-2 sm:px-4 max-w-4xl mx-auto"
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
-          >
-            <motion.div variants={fadeIn} transition={{ duration: 0.4 }}>
-              <Badge className="bg-red-600 text-white border-transparent">
-                Backed by Y Combinator*
-              </Badge>
-            </motion.div>
-            <motion.div variants={fadeIn} transition={{ duration: 0.4 }}>
-              <Badge variant="outline">Series Z Funded 🚀</Badge>
-            </motion.div>
-            <motion.div variants={fadeIn} transition={{ duration: 0.4 }}>
-              <Badge variant="secondary">Powered by 🧠 rot</Badge>
-            </motion.div>
-            <motion.div variants={fadeIn} transition={{ duration: 0.4 }}>
-              <Badge variant="default">香港製造 🇭🇰</Badge>
-            </motion.div>
-            <motion.div variants={fadeIn} transition={{ duration: 0.4 }}>
-              <Badge variant="outline">*** in my dreams</Badge>
-            </motion.div>
-            <motion.div variants={fadeIn} transition={{ duration: 0.4 }}>
-              <Badge className="bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 border-transparent">
-                獨角獸級數 🦄
-              </Badge>
-            </motion.div>
-            <motion.div variants={fadeIn} transition={{ duration: 0.4 }}>
-              <Badge variant="outline" className="border-dashed border-2">
-                Bootstrapped AF
-              </Badge>
-            </motion.div>
-            <motion.div variants={fadeIn} transition={{ duration: 0.4 }}>
-              <Badge variant="secondary">Running on Copium</Badge>
-            </motion.div>
-            <motion.div variants={fadeIn} transition={{ duration: 0.4 }}>
-              <Badge className="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 border-transparent">
-                Profitable (cap)
-              </Badge>
-            </motion.div>
-            <motion.div variants={fadeIn} transition={{ duration: 0.4 }}>
-              <Badge className="bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border-transparent">
-                Certified HBU dev
-              </Badge>
-            </motion.div>
-            <motion.div variants={fadeIn} transition={{ duration: 0.4 }}>
-              <Badge variant="secondary">Powered by ChatGPT 6.9</Badge>
-            </motion.div>
-            <motion.div variants={fadeIn} transition={{ duration: 0.4 }}>
-              <Badge variant="outline">Web5 Ready™</Badge>
-            </motion.div>
-            <motion.div variants={fadeIn} transition={{ duration: 0.4 }}>
-              <Badge className="bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 border-transparent">
-                Built with Stack Overflow
-              </Badge>
-            </motion.div>
-            <motion.div variants={fadeIn} transition={{ duration: 0.4 }}>
-              <Badge variant="outline">Trust me bro 🤝</Badge>
-            </motion.div>
-            <motion.div variants={fadeIn} transition={{ duration: 0.4 }}>
-              <Badge variant="secondary">唔識寫code都得 👑</Badge>
-            </motion.div>
-            <motion.div variants={fadeIn} transition={{ duration: 0.4 }}>
-              <Badge variant="secondary">AI寫晒 🧠</Badge>
-            </motion.div>
-            <motion.div variants={fadeIn} transition={{ duration: 0.4 }}>
-              <Badge className="bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 border-transparent">
-                冇bug先奇怪 🐛
-              </Badge>
-            </motion.div>
-            <motion.div variants={fadeIn} transition={{ duration: 0.4 }}>
-              <Badge variant="outline">Copy完唔改都得 📝</Badge>
-            </motion.div>
-          </motion.div>
-
-          <motion.button
-            onClick={scrollToWork}
-            className="group inline-flex flex-col items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors pt-8"
-            aria-label="Scroll to view work"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-          >
-            <span>View Work</span>
-            <ArrowDown className="w-5 h-5 animate-bounce" />
-          </motion.button>
+            <div className="border border-foreground p-4 sm:p-5 animate-fade-in-up">
+              <p className="eyebrow mb-4">Press room (not really)</p>
+              <div className="flex flex-wrap gap-2">
+                {jokeBadges.map((badge) => (
+                  <Badge key={badge.label} variant={badge.variant}>
+                    {badge.label}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Featured Work Section */}
-      <section id="work" className="py-16 sm:py-24 md:py-32 px-4 sm:px-6">
-        <div className="container max-w-6xl mx-auto space-y-20 sm:space-y-32">
+      <div className="editorial-container">
+        <div className="rule-strong" />
+      </div>
+
+      <section id="work" className="py-20 sm:py-28">
+        <div className="editorial-container space-y-20 sm:space-y-28">
+          <div className="flex items-end justify-between gap-4">
+            <div>
+              <p className="eyebrow text-accent mb-3">01</p>
+              <h2 className="display text-4xl sm:text-5xl">Selected Work</h2>
+            </div>
+            <p className="hidden sm:block font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
+              Case studies
+            </p>
+          </div>
+
           {projects.map((project, index) => (
-            <motion.div
+            <article
               key={project.id}
-              className="space-y-8 sm:space-y-12"
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              className="space-y-10 animate-fade-in-up"
             >
-              {/* Project Header */}
-              <div className="space-y-4 sm:space-y-6 max-w-3xl">
-                <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                  <span className="font-mono">{project.year}</span>
-                  <motion.div
-                    className="h-px flex-1 bg-border"
-                    initial={{ scaleX: 0 }}
-                    whileInView={{ scaleX: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                  />
+              <div className="grid gap-4 sm:grid-cols-[auto_1fr_auto] sm:items-end">
+                <span className="font-mono text-xs text-muted-foreground">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div className="space-y-3">
+                  <h3 className="display text-3xl sm:text-5xl md:text-6xl leading-[0.95] text-balance">
+                    {project.title}
+                  </h3>
+                  <p className="text-lg text-muted-foreground">
+                    {project.subtitle}
+                  </p>
                 </div>
-                <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight">
-                  {project.title}
-                </h2>
-                <p className="text-lg sm:text-xl text-muted-foreground font-light">
-                  {project.subtitle}
-                </p>
+                <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+                  {project.year}
+                </span>
               </div>
 
-              {/* Project Image */}
               <Link
                 href={project.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block mb-12 sm:mb-20"
+                className="block group"
               >
-                <motion.div
-                  className="group relative overflow-hidden rounded-lg border bg-muted cursor-pointer"
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.3 }}
-                >
+                <div className="relative overflow-hidden border border-foreground bg-muted">
                   <div className="aspect-[16/9] relative">
                     {project.image ? (
-                      <>
-                        <Image
-                          src={project.image}
-                          alt={project.title}
-                          fill
-                          className="object-cover transition-transform duration-700 group-hover:scale-105"
-                          priority={index === 0}
-                        />
-                        <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors duration-300" />
-                      </>
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        className="object-cover transition-[filter] duration-500 group-hover:grayscale-0 grayscale-[20%]"
+                        priority={index === 0}
+                      />
                     ) : (
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="text-6xl opacity-50">🎨</div>
+                      <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
+                        No preview
                       </div>
                     )}
                   </div>
-                </motion.div>
+                </div>
               </Link>
 
-              {/* Project Details */}
-              <motion.div
-                className="grid md:grid-cols-2 gap-8 sm:gap-12 max-w-4xl"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
+              <div className="grid md:grid-cols-2 gap-10 max-w-4xl">
                 <div className="space-y-4">
-                  <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
-                    About
-                  </h3>
-                  <p className="text-base sm:text-lg leading-relaxed text-muted-foreground">
+                  <h4 className="eyebrow">About</h4>
+                  <p className="text-base leading-relaxed text-muted-foreground">
                     {project.description}
                   </p>
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Button asChild className="mt-6">
-                      <a
-                        href={project.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Visit Site
-                      </a>
-                    </Button>
-                  </motion.div>
+                  <Button asChild variant="outline" className="mt-2">
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Visit Site ↗
+                    </a>
+                  </Button>
                 </div>
-
                 <div className="space-y-4">
-                  <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
-                    Technology
-                  </h3>
+                  <h4 className="eyebrow">Technology</h4>
                   <ul className="space-y-3">
-                    {project.tags.map((tag, tagIndex) => (
-                      <motion.li
+                    {project.tags.map((tag) => (
+                      <li
                         key={tag}
-                        className="text-base sm:text-lg text-muted-foreground flex items-center gap-3"
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.4, delay: tagIndex * 0.1 }}
+                        className="text-base text-muted-foreground pl-4 border-l border-[var(--border-subtle)]"
                       >
-                        <div className="w-1 h-1 rounded-full bg-foreground" />
                         {tag}
-                      </motion.li>
+                      </li>
                     ))}
                   </ul>
                 </div>
-              </motion.div>
-            </motion.div>
+              </div>
+            </article>
           ))}
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t py-12 px-6">
-        <div className="container max-w-6xl mx-auto">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} Isaac Tsui
-            </div>
-            <nav className="flex items-center gap-6 text-sm">
-              <Link
-                href="/"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Portfolio
-              </Link>
-              <Link
-                href="/studio"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Studio
-              </Link>
-            </nav>
-          </div>
-        </div>
-      </footer>
-
-      <SpeedInsights />
+      <Footer />
     </div>
   );
 }

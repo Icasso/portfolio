@@ -1,56 +1,55 @@
-import { memo } from "react";
 import { education } from "@/data/education";
 
-interface EducationItemProps {
+function EducationItem({
+  edu,
+  index,
+}: {
   edu: (typeof education)[0];
-}
-
-const EducationItem = memo(({ edu }: EducationItemProps) => {
+  index: number;
+}) {
   return (
-    <div key={edu.title}>
+    <article className="grid gap-6 md:grid-cols-[5rem_1fr] py-8 first:pt-0 border-b border-[var(--border-subtle)] last:border-b-0">
+      <span className="font-mono text-xs text-muted-foreground tabular-nums pt-1">
+        {String(index + 1).padStart(2, "0")}
+      </span>
       <div className="flex flex-col gap-4">
-        <div className="flex justify-between items-start gap-4">
-          <div className="flex flex-col items-start sm:flex-row sm:items-baseline gap-2">
-            <h3 className="font-semibold text-xl text-foreground">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+          <div className="space-y-2">
+            <h3 className="display text-2xl sm:text-3xl leading-tight">
               {edu.title}
             </h3>
-            <span className="text-sm text-muted-foreground">
-              {edu.organization}
-            </span>
+            <p className="text-sm text-muted-foreground">{edu.organization}</p>
           </div>
-          <span className="text-sm font-mono text-muted-foreground whitespace-nowrap">
+          <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground whitespace-nowrap">
             {edu.period}
           </span>
         </div>
-        <div className="space-y-1">
-          <p className="text-sm text-muted-foreground">{edu.role}</p>
+        <div className="space-y-3 max-w-3xl">
+          <p className="text-sm text-foreground/80">{edu.role}</p>
           {edu.highlights.length > 0 && (
-            <ul className="text-sm text-muted-foreground list-disc list-inside pt-2 space-y-1">
+            <ul className="space-y-2">
               {edu.highlights.map((highlight: string, i: number) => (
-                <li key={i}>{highlight}</li>
+                <li
+                  key={i}
+                  className="text-sm leading-relaxed text-muted-foreground pl-4 border-l border-[var(--border-subtle)]"
+                >
+                  {highlight}
+                </li>
               ))}
             </ul>
           )}
         </div>
       </div>
-    </div>
+    </article>
   );
-});
+}
 
-EducationItem.displayName = "EducationItem";
-
-function EducationBase() {
+export function Education() {
   return (
-    <div className="grid gap-8">
-      {education.map((edu) => (
-        <EducationItem key={edu.title} edu={edu} />
+    <div>
+      {education.map((edu, index) => (
+        <EducationItem key={edu.title} edu={edu} index={index} />
       ))}
     </div>
   );
 }
-
-export const Education = memo(EducationBase);
-
-// Create a named export object instead of anonymous default export
-const EducationExports = { Education };
-export default EducationExports;

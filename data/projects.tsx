@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { GitHubLogoIcon, ExternalLinkIcon } from "@radix-ui/react-icons";
+import { Github, ExternalLink } from "lucide-react";
 
 export interface ProjectLink {
   url: string;
@@ -46,7 +46,7 @@ export const projects: Project[] = [
       {
         url: "https://ai-professional-portrait.vercel.app/",
         label: "View Project",
-        icon: <ExternalLinkIcon className="w-4 h-4" />,
+        icon: <ExternalLink className="w-4 h-4" />,
       },
     ],
   },
@@ -76,12 +76,12 @@ export const projects: Project[] = [
       {
         url: "https://isaactsui.xyz/studio",
         label: "View Project",
-        icon: <ExternalLinkIcon className="w-4 h-4" />,
+        icon: <ExternalLink className="w-4 h-4" />,
       },
       {
         url: "https://github.com/Icasso/portfolio",
         label: "Source Code",
-        icon: <GitHubLogoIcon className="w-4 h-4" />,
+        icon: <Github className="w-4 h-4" />,
       },
     ],
   },
@@ -112,7 +112,7 @@ export const projects: Project[] = [
       {
         url: "https://github.com/Icasso/portfolio",
         label: "View Project",
-        icon: <GitHubLogoIcon className="w-4 h-4" />,
+        icon: <Github className="w-4 h-4" />,
       },
     ],
   },
@@ -144,17 +144,17 @@ export const projects: Project[] = [
       {
         url: "https://www.cs.cityu.edu.hk/academic-programmes/bsc-computer-science/final-year-project-showcase-0#Year%202021-2022",
         label: "View Showcase",
-        icon: <ExternalLinkIcon className="w-4 h-4" />,
+        icon: <ExternalLink className="w-4 h-4" />,
       },
       {
         url: "https://github.com/Icasso/streamlit-fyp",
         label: "Streamlit App",
-        icon: <GitHubLogoIcon className="w-4 h-4" />,
+        icon: <Github className="w-4 h-4" />,
       },
       {
         url: "https://github.com/Icasso/DataSpell-EAP-Projects",
         label: "Data Analysis",
-        icon: <GitHubLogoIcon className="w-4 h-4" />,
+        icon: <Github className="w-4 h-4" />,
       },
     ],
   },

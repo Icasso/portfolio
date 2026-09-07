@@ -1,18 +1,18 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X, ExternalLink } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "./ThemeToggle";
 import Link from "next/link";
 
-const navItems: Array<{ label: string; href: string; external?: boolean }> = [
-  { label: "Work Experience", href: "#experience" },
+const navItems = [
+  { label: "Experience", href: "#experience" },
   { label: "Education", href: "#education" },
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
   { label: "Volunteering", href: "#volunteering" },
-  { label: "Studio", href: "/studio", external: true },
+  { label: "Studio", href: "/studio" },
 ];
 
 export function Navigation() {
@@ -31,9 +31,8 @@ export function Navigation() {
       { threshold: 0.3, rootMargin: "-100px 0px -60% 0px" }
     );
 
-    // Only observe internal section links (hash links)
     navItems.forEach((item) => {
-      if (!item.external) {
+      if (item.href.startsWith("#")) {
         const element = document.querySelector(item.href);
         if (element) observer.observe(element);
       }
@@ -51,104 +50,96 @@ export function Navigation() {
     const element = document.querySelector(href);
     if (element) {
       const offset = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
+      const top =
+        element.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: "smooth" });
     }
   };
 
   return (
-    <nav className="no-print sticky top-0 z-40 w-full border-b border-foreground bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
-      <div className="container max-w-4xl mx-auto px-4">
-        <div className="flex h-16 items-center justify-between">
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6 flex-1">
+    <nav className="no-print sticky top-0 z-40 w-full border-b border-foreground bg-background/95 backdrop-blur-sm supports-[backdrop-filter]:bg-background/90">
+      <div className="editorial-container">
+        <div className="flex h-14 items-center justify-between gap-4">
+          <Link
+            href="/"
+            className="font-mono text-[11px] uppercase tracking-[0.2em] text-foreground hover:text-accent transition-colors"
+          >
+            Isaac Tsui
+          </Link>
+
+          <div className="hidden md:flex items-center gap-1 flex-1 justify-center">
             {navItems.map((item) =>
-              item.external ? (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="inline-flex items-center gap-1.5 text-sm font-medium px-3 py-1.5 rounded-md border border-foreground/20 text-foreground/80 hover:text-foreground hover:border-foreground/40 transition-all"
-                >
-                  {item.label}
-                  <ExternalLink className="w-3 h-3" />
-                </Link>
-              ) : (
+              item.href.startsWith("#") ? (
                 <a
                   key={item.href}
                   href={item.href}
                   onClick={(e) => handleClick(e, item.href)}
-                  className={`text-sm font-medium transition-colors hover:text-foreground/80 ${
+                  className={`px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.14em] transition-colors ${
                     activeSection === item.href.slice(1)
                       ? "text-foreground"
-                      : "text-foreground/60"
+                      : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
                   {item.label}
                 </a>
+              ) : (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground hover:text-accent transition-colors"
+                >
+                  {item.label} ↗
+                </Link>
               )
             )}
           </div>
 
-          {/* Theme Toggle - Desktop */}
           <div className="hidden md:block">
             <ThemeToggle />
           </div>
 
-          {/* Mobile Header */}
-          <div className="flex md:hidden items-center justify-between w-full">
-            <span className="text-sm font-bold tracking-tight">Isaac Tsui</span>
-            <div className="flex items-center gap-2">
-              <ThemeToggle />
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setIsOpen(!isOpen)}
-                aria-label="Toggle navigation menu"
-              >
-                {isOpen ? (
-                  <X className="h-5 w-5" />
-                ) : (
-                  <Menu className="h-5 w-5" />
-                )}
-              </Button>
-            </div>
+          <div className="flex md:hidden items-center gap-2">
+            <ThemeToggle />
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label="Toggle navigation menu"
+              aria-expanded={isOpen}
+            >
+              {isOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+            </Button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Navigation Drawer */}
       {isOpen && (
         <div className="md:hidden border-t border-foreground">
-          <div className="container max-w-4xl mx-auto px-4 py-4 space-y-3">
+          <div className="editorial-container py-4 space-y-1">
             {navItems.map((item) =>
-              item.external ? (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setIsOpen(false)}
-                  className="flex items-center justify-between py-2 px-3 text-base font-medium text-foreground/80 border border-foreground/20 rounded-md transition-colors hover:text-foreground hover:border-foreground/40"
-                >
-                  {item.label}
-                  <ExternalLink className="w-4 h-4" />
-                </Link>
-              ) : (
+              item.href.startsWith("#") ? (
                 <a
                   key={item.href}
                   href={item.href}
                   onClick={(e) => handleClick(e, item.href)}
-                  className={`block py-2 text-base font-medium transition-colors hover:text-foreground/80 ${
+                  className={`block py-3 font-mono text-xs uppercase tracking-[0.16em] border-b border-[var(--border-subtle)] ${
                     activeSection === item.href.slice(1)
                       ? "text-foreground"
-                      : "text-foreground/60"
+                      : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
                   {item.label}
                 </a>
+              ) : (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setIsOpen(false)}
+                  className="flex items-center justify-between py-3 font-mono text-xs uppercase tracking-[0.16em] text-muted-foreground border-b border-[var(--border-subtle)] hover:text-accent"
+                >
+                  {item.label}
+                  <span aria-hidden>↗</span>
+                </Link>
               )
             )}
           </div>

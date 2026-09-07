@@ -1,48 +1,56 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { memo } from "react";
 import { projects } from "@/data/projects";
 
-function ProjectsBase() {
+export function Projects() {
   return (
-    <div className="space-y-8">
-      {projects.map((project) => (
-        <div key={project.title}>
-          <div className="flex flex-col gap-4">
-            <div className="flex justify-between items-start gap-4">
-              <div className="flex flex-col items-start sm:flex-row sm:items-baseline gap-2">
-                <h3 className="font-semibold text-xl text-foreground">
+    <div>
+      {projects.map((project, index) => (
+        <article
+          key={project.title}
+          className="grid gap-6 md:grid-cols-[5rem_1fr] py-8 first:pt-0 border-b border-[var(--border-subtle)] last:border-b-0"
+        >
+          <span className="font-mono text-xs text-muted-foreground tabular-nums pt-1">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+          <div className="flex flex-col gap-5">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+              <div className="space-y-2">
+                <h3 className="display text-2xl sm:text-3xl leading-tight">
                   {project.title}
                 </h3>
-                <Badge variant="secondary" className="text-xs pl-0">
-                  {project.type}
-                </Badge>
+                <Badge variant="outline">{project.type}</Badge>
               </div>
-              <span className="text-sm font-mono text-muted-foreground whitespace-nowrap">
+              <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground whitespace-nowrap">
                 {project.date}
               </span>
             </div>
-            <div className="space-y-4">
-              <p className="text-sm text-muted-foreground">
+            <div className="space-y-4 max-w-3xl">
+              <p className="text-sm leading-relaxed text-muted-foreground">
                 {project.description}
               </p>
-              <ul className="text-sm text-muted-foreground list-disc list-inside space-y-1">
+              <ul className="space-y-2">
                 {project.highlights.map((highlight, i) => (
-                  <li key={i}>{highlight}</li>
+                  <li
+                    key={i}
+                    className="text-sm leading-relaxed text-muted-foreground pl-4 border-l border-[var(--border-subtle)]"
+                  >
+                    {highlight}
+                  </li>
                 ))}
               </ul>
-              <div className="flex flex-wrap gap-2 pt-2">
+              <div className="flex flex-wrap gap-2 pt-1">
                 {project.technologies.map((tech) => (
-                  <Badge key={tech} variant="outline" className="text-xs">
+                  <Badge key={tech} variant="secondary">
                     {tech}
                   </Badge>
                 ))}
               </div>
               {project.links && (
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-3 pt-2">
                   {project.links.map((link) => (
-                    <Button key={link.url} size="sm" asChild className="gap-2">
+                    <Button key={link.url} size="sm" variant="outline" asChild>
                       <Link
                         href={link.url}
                         target="_blank"
@@ -57,14 +65,8 @@ function ProjectsBase() {
               )}
             </div>
           </div>
-        </div>
+        </article>
       ))}
     </div>
   );
 }
-
-export const Projects = memo(ProjectsBase);
-
-// Create a named export object instead of anonymous default export
-const ProjectsExports = { Projects };
-export default ProjectsExports;

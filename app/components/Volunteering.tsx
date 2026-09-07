@@ -3,49 +3,58 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { memo } from "react";
 import { volunteering } from "@/data/volunteering";
 
-interface VolunteerItemProps {
+function VolunteerItem({
+  volunteer,
+  index,
+}: {
   volunteer: (typeof volunteering)[0];
-}
-
-const VolunteerItem = memo(({ volunteer }: VolunteerItemProps) => {
+  index: number;
+}) {
   return (
-    <div key={volunteer.title}>
-      <div className="flex flex-col gap-4">
-        <div className="flex justify-between items-start gap-4">
-          <div className="flex flex-col sm:flex-row sm:items-baseline gap-2">
-            <h3 className="font-semibold text-xl text-foreground">
+    <article className="grid gap-6 md:grid-cols-[5rem_1fr] py-8 first:pt-0 border-b border-[var(--border-subtle)] last:border-b-0">
+      <span className="font-mono text-xs text-muted-foreground tabular-nums pt-1">
+        {String(index + 1).padStart(2, "0")}
+      </span>
+      <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+          <div className="space-y-2">
+            <h3 className="display text-2xl sm:text-3xl leading-tight">
               {volunteer.title}
             </h3>
             <Link
               href={volunteer.organizationUrl}
-              className="text-sm text-muted-foreground hover:text-primary transition-colors"
+              className="text-sm text-muted-foreground hover:text-accent transition-colors"
               target="_blank"
               rel="noopener noreferrer"
             >
               {volunteer.organization}
             </Link>
           </div>
-          <span className="text-sm font-mono text-muted-foreground whitespace-nowrap">
+          <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground whitespace-nowrap">
             {volunteer.period}
           </span>
         </div>
-        <div className="space-y-4">
-          <p className="text-sm text-muted-foreground">{volunteer.role}</p>
+        <div className="space-y-4 max-w-3xl">
+          <p className="text-sm text-foreground/80">{volunteer.role}</p>
           {volunteer.description && (
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm leading-relaxed text-muted-foreground">
               {volunteer.description}
             </p>
           )}
-          <ul className="text-sm text-muted-foreground list-disc list-inside space-y-1">
+          <ul className="space-y-2">
             {volunteer.highlights.map((highlight, i) => (
-              <li key={i}>{highlight}</li>
+              <li
+                key={i}
+                className="text-sm leading-relaxed text-muted-foreground pl-4 border-l border-[var(--border-subtle)]"
+              >
+                {highlight}
+              </li>
             ))}
           </ul>
           {volunteer.image && (
-            <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg">
+            <div className="relative aspect-[16/9] w-full overflow-hidden border border-foreground">
               <Image
                 src={volunteer.image}
                 alt={`${volunteer.title} at ${volunteer.organization}`}
@@ -57,9 +66,9 @@ const VolunteerItem = memo(({ volunteer }: VolunteerItemProps) => {
             </div>
           )}
           {volunteer.badges && (
-            <div className="flex flex-wrap gap-2 pt-2">
+            <div className="flex flex-wrap gap-2 pt-1">
               {volunteer.badges.map((badge) => (
-                <Badge key={badge} variant="outline" className="text-xs">
+                <Badge key={badge} variant="outline">
                   {badge}
                 </Badge>
               ))}
@@ -67,38 +76,34 @@ const VolunteerItem = memo(({ volunteer }: VolunteerItemProps) => {
           )}
           {volunteer.linkedInUrl && (
             <div>
-              <Button size="sm" asChild className="gap-2">
+              <Button size="sm" variant="outline" asChild>
                 <Link
                   href={volunteer.linkedInUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   View Details
-                  <ExternalLink className="w-4 h-4" />
+                  <ExternalLink className="w-3.5 h-3.5" />
                 </Link>
               </Button>
             </div>
           )}
         </div>
       </div>
-    </div>
+    </article>
   );
-});
+}
 
-VolunteerItem.displayName = "VolunteerItem";
-
-function VolunteeringBase() {
+export function Volunteering() {
   return (
-    <div className="grid gap-8">
-      {volunteering.map((volunteer) => (
-        <VolunteerItem key={volunteer.title} volunteer={volunteer} />
+    <div>
+      {volunteering.map((volunteer, index) => (
+        <VolunteerItem
+          key={volunteer.title}
+          volunteer={volunteer}
+          index={index}
+        />
       ))}
     </div>
   );
 }
-
-export const Volunteering = memo(VolunteeringBase);
-
-// Create a named export object instead of anonymous default export
-const VolunteeringExports = { Volunteering };
-export default VolunteeringExports;

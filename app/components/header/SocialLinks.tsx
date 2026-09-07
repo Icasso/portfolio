@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { ReactNode, memo } from "react";
+import { ReactNode } from "react";
 
 export interface SocialLink {
   href: string;
@@ -13,25 +12,23 @@ export interface SocialLinksProps {
   className?: string;
 }
 
-function SocialLinksBase({ links, className = "" }: SocialLinksProps) {
+export function SocialLinks({ links, className = "" }: SocialLinksProps) {
   return (
-    <div className={`flex gap-4 ${className}`}>
+    <div className={`flex flex-wrap gap-x-6 gap-y-3 ${className}`}>
       {links.map((link) => (
-        <Button key={link.href} size="sm" asChild className="gap-2">
-          <Link
-            href={link.href}
-            target={link.href.startsWith("http") ? "_blank" : undefined}
-            rel={
-              link.href.startsWith("http") ? "noopener noreferrer" : undefined
-            }
-          >
-            {link.icon}
-            {link.label}
-          </Link>
-        </Button>
+        <Link
+          key={link.href}
+          href={link.href}
+          target={link.href.startsWith("http") ? "_blank" : undefined}
+          rel={
+            link.href.startsWith("http") ? "noopener noreferrer" : undefined
+          }
+          className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground hover:text-accent transition-colors"
+        >
+          <span className="text-foreground/70">{link.icon}</span>
+          {link.label}
+        </Link>
       ))}
     </div>
   );
 }
-
-export const SocialLinks = memo(SocialLinksBase);
